@@ -1,12 +1,22 @@
+import { Suspense } from 'react';
+import { Toaster } from 'react-hot-toast';
+
+import EntererComponent from '@/pages/EntererComponent'
+import PageLoader from '@/features/PageLoader'
 import './App.css'
 
-function App() {
+import { withProviders } from '@/app/providers/index'
 
+const App = () => {
   return (
     <>
-      <h1>Hello world </h1>
+      <Toaster />
+      <Suspense fallback={<PageLoader />}>
+        <EntererComponent />
+      </Suspense>
     </>
   )
 }
 
-export default App
+export default withProviders(App);
+

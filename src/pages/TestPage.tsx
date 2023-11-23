@@ -1,12 +1,19 @@
-import TestTournament from "../entities/testComponents/TestTournament"
+// import TestTournament from "../entities/testComponents/testComponents/TestTournament"
+import TestTypography from "../entities/testComponents/testComponents/TestTypography"
 
+import { Typography } from '@mui/material';
 
-function TestPage() {
+const TestPage: React.FC = () => {
 
   return (
     <>
-      <h1>Test Page</h1>
-      <TestTournament />
+      <Typography variant='h5' color="secondary"> Test Page </Typography>
+      <br />
+
+      {/* <TestTournament /> */}
+
+      <br />
+      <TestTypography />
     </>
   )
 }
