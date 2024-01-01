@@ -1,21 +1,28 @@
 // import TestTournament from "../entities/testComponents/testComponents/TestTournament"
-import TestTypography from "../entities/testComponents/testComponents/TestTypography"
+import TestTypography from '../entities/testComponents/testComponents/TestTypography'
+import ActionCard from '@/shared/actionCard/ActionCard'
 
-import { Typography } from '@mui/material';
+import { Fragment } from 'react'
+import { Typography } from '@mui/material'
 
 const TestPage: React.FC = () => {
+	return (
+		<Fragment>
+			<Typography
+				variant='h5'
+				color='secondary'>
+				Test Page
+			</Typography>
+			<br />
 
-  return (
-    <>
-      <Typography variant='h5' color="secondary"> Test Page </Typography>
-      <br />
+			{/* <TestTournament /> */}
 
-      {/* <TestTournament /> */}
-
-      <br />
-      <TestTypography />
-    </>
-  )
+			<br />
+			<TestTypography />
+			<br />
+			<ActionCard />
+		</Fragment>
+	)
 }
 
 export default TestPage

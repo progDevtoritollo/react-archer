@@ -1,38 +1,31 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, Fragment } from 'react'
 // import { useSelector } from 'react-redux';
 
-import PageLoader from '@/features/PageLoader';
-const AuthRouter = lazy(() =>
-      import('@/app/router/AuthRouter'),
-);
-import AppRouter from '@/app/router/AppRouter';
-
-
+import PageLoader from '@/features/PageLoader'
+const AuthRouter = lazy(() => import('@/app/router/AuthRouter'))
+import AppRouter from '@/app/router/AppRouter'
 
 const EntererComponent: React.FC = () => {
-      // const { isLoggedIn } = useSelector(selectAuth);
-      const isLoggedIn = window.localStorage.getItem('isLoggedIn');
+	// const { isLoggedIn } = useSelector(selectAuth);
+	const isLoggedIn = window.localStorage.getItem('isLoggedIn')
 
-      if (!isLoggedIn)
-            return (
-                  <div>
-                        <Suspense fallback={<PageLoader />}>
-                              <AuthRouter />
-                        </Suspense>
-                  </div>
-            );
-      else {
-            return (
-                  <div>
-                        <Suspense
-                              fallback={
-                                    <PageLoader />
-                              }>
-                              <AppRouter />
-                        </Suspense>
-                  </div>
-            );
-      }
-};
+	if (!isLoggedIn)
+		return (
+			<Fragment>
+				<Suspense fallback={<PageLoader />}>
+					<AuthRouter />
+				</Suspense>
+			</Fragment>
+		)
+	else {
+		return (
+			<Fragment>
+				<Suspense fallback={<PageLoader />}>
+					<AppRouter />
+				</Suspense>
+			</Fragment>
+		)
+	}
+}
 
-export default EntererComponent;
+export default EntererComponent

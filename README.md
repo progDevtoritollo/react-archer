@@ -12,8 +12,7 @@
 
 # localStorage
 
-isLoggedIn - true|false
-JWTkey - string
+isLoggedIn - true|false JWTkey - string
 
 # redux
 
@@ -29,12 +28,13 @@ install Config and check :
 
 закомитить как начало работы с UI
 
-- настроить и попробовать Vitest
-  (спросить GPT как тестировать, в чем заключаеться суть тестов и на какие процессы можно разделить, дать ему компонент на пробу для теста)
+- настроить и попробовать Vitest (спросить GPT как тестировать, в чем заключаеться суть тестов и на какие процессы можно разделить, дать ему компонент на пробу для теста)
 
 - Config App Routing
 
 как тестить такое спросить у GPT
+
+change brake points - max-width find some examples to config max point, and other.
 
 # React + TypeScript + Vite
 
