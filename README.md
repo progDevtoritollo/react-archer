@@ -1,65 +1,172 @@
-# React.ts App for Archer clubs and sportsmen
+# Archery
 
-## Stack
+This project is designed to provide archers with a comprehensive tool for tracking their shooting
+performance during training sessions. It enables athletes to record and mark their hits on the
+target, facilitating the analysis of accuracy and progression over time. Additionally, the platform
+allows archers to engage in friendly competitions and mini-events, fostering a sense of community
+and healthy competition among peers.
 
-- MaterialUI
-- ReduxToolkit
-- react-hot-toast
-- axios
-- React Query
+![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
 
-## CLient storage
+## Tech Stack
 
-# localStorage
+**Client:** Vite, React, TypeScript, MaterialUI, ReduxToolKit, React Query, Axios, Vitest,
+react-hot-toast, react-tournament-brackets
 
-isLoggedIn - true|false JWTkey - string
+## References to
 
-# redux
+**Design** --link
 
-## To Do
+**Server** --link
 
-install Config and check :
+## Run Locally
 
-- React Query
+Clone the project:
 
-закомитить как стартовый тимплейт
-
-- add default UI components as Shared folder
-
-закомитить как начало работы с UI
-
-- настроить и попробовать Vitest (спросить GPT как тестировать, в чем заключаеться суть тестов и на какие процессы можно разделить, дать ему компонент на пробу для теста)
-
-- Config App Routing
-
-как тестить такое спросить у GPT
-
-change brake points - max-width find some examples to config max point, and other.
-
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+  git clone git@github.com:progDevtoritollo/react-archer.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Go to the project directory:
+
+```bash
+  cd react-archer
+```
+
+Install dependencies:
+
+```bash
+  npm install
+```
+
+Start the server:
+
+```bash
+  npm run dev
+```
+
+## General functionality
+
+- Authenticate users via JWT (login/signup pages + logout button on settings page)
+- CRU- user (sign up & settings page - no deleting required)
+- GET list of users
+- CR-D notifications (friend requests, payment reminder, event requests )
+- CRUD club (club settings page)
+- GET list of clubs
+- CR-- checks/duels (new check & new duel & competiotion pages)
+- GET and display paginated lists of checks & duels & competiotions
+
+## Screenshots
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  npm run test
+```
+
+## Deployment
+
+To deploy this project run
+
+Run buil command:
+
+```bash
+  npm run built
+```
+
+execute docker compose file:
+
+```bash
+  docker compose up
+```
+
+## The general page breakdown
+
+- Home page (URL: / )
+
+  - Landing page
+
+- Sign in/Sign up pages (URL: /auth/login, /auth/logout )
+
+  - Uses JWT (store the token in localStorage)
+  - Authentication can be easily switched to session/cookie based
+
+- User
+
+  - statistic page (URL: /user/statistic)
+  - settings page (URL: /user/settings)
+  - notification page (URL: /user/notifications)
+  - friends page (URL: /user/friends)
+  - list of user activity (URL: /user/activity)
+    - Page of check, duel or competition (URL: user/activity/:id)
+
+- Club
+  - statistic page (URL: /club/statistic)
+  - events page (URL: /club/events)
+  - settings page (URL: /club/settings)
+  - activity page & list of check, duel, competition (URL: /club/activity)
+    - Page of check, duel or competition (URL: club/activity/:id)
+- Create events (URL: /create-event/:type)
+
+  - Check (URL: /create-event/check)
+  - Duel (URL: /create-event/duel)
+  - Competition (URL: /create-event/competition)
+
+- Profile user page (URL: /user/:username or /user/:id):
+
+  - Show basic user info
+  - Show user statistic
+  - Show user info for trainer
+  - List of check, duel, competition
+
+- World
+  - List of top clubs in week/mounth/year (URL: /world/clubs)
+  - List of top users in week/mounth/year (URL: /world/users)
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`API_KEY`
+
+`ANOTHER_API_KEY`
+
+exemple:
+
+VITE_API_ENDPOINT=http://localhost:3000 VITE_API_DELAY=100 VITE_API_STORAGE_MODE=session
+VITE_API_USER_EMAIL=user@nukeapp.com VITE_API_USER_PASSWORD=37fVgE
+VITE_JWT_SECRET=cc7e0d44fd473002f1c42167459001140ec6389b7353f8088f4d9a95f2f596f2
+
+## Color Reference
+
+| Color         | Hex                                                              |
+| ------------- | ---------------------------------------------------------------- |
+| Example Color | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) #0a192f |
+| Example Color | ![#f8f8f8](https://via.placeholder.com/10/f8f8f8?text=+) #f8f8f8 |
+| Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #00b48a |
+| Example Color | ![#00d1a0](https://via.placeholder.com/10/00b48a?text=+) #00d1a0 |
+
+## Data
+
+LocalStorage
+
+- auth JWTkey - string
+- account settings - (light/dark mode)
+- target type: Big, Triple
+
+SessionStorage
+
+- isLoggedIn - true|false
+- Auth data
+
+Redux Toolkit
+
+- pages information like list of clubs, users, notifications, activity, etc.
+- User info
+-
+
+## docker compose file
