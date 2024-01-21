@@ -18,15 +18,12 @@ const PageLayout: FC = () => {
 		return (
 			<Fragment>
 				<Container
-					component='main'
-					maxWidth='xs'
+					component="main"
+					maxWidth="xs"
 					style={{ position: 'relative', paddingBottom: '56px' }}>
 					<Outlet />
 				</Container>
-				<Box
-					position='fixed'
-					bottom={0}
-					width='100%'>
+				<Box position="fixed" bottom={0} width="100%">
 					<FooterBar />
 				</Box>
 			</Fragment>
@@ -36,27 +33,18 @@ const PageLayout: FC = () => {
 			<Fragment>
 				<Box sx={{ display: 'flex', justifyContent: 'center' }}>
 					<Container
-						component='main'
-						maxWidth='xl'
+						component="main"
+						maxWidth="xl"
 						sx={{ textAlign: 'center', mx: 1, display: 'flex', justifyContent: 'center' }}>
-						<Grid
-							container
-							spacing={5}
-							justifyContent='center'>
-							<Grid
-								item
-								md={2}>
+						<Grid container spacing={5} justifyContent="center">
+							<Grid item md={2}>
 								<SideBar />
 							</Grid>
-							<Grid
-								item
-								md={8}>
+							<Grid item md={8}>
 								<Outlet />
 							</Grid>
 							{isTablet ? (
-								<Grid
-									item
-									md={2}>
+								<Grid item md={2}>
 									<RightSidebar />
 								</Grid>
 							) : null}
