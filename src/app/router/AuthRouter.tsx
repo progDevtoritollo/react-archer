@@ -1,20 +1,18 @@
-import { Routes, Route } from 'react-router-dom';
-import { FC } from "react";
+import { Routes, Route } from 'react-router-dom'
+import { lazy, FC } from 'react'
 
-import NotFound from '@/pages/NotFound';
-import { LoginRegister } from '@/pages/LoginRegister';
+const Logout = lazy(() => import('@/pages/Logout'))
+import { LoginRegister } from '@/pages/LoginRegister'
+import PublicRoute from './PublicRoute'
 
 const AuthRouter: FC = () => {
-  return (
-    <Routes>
-      <Route element={<LoginRegister />} path="/" />
-      <Route element={<LoginRegister />} path="/login" />
-      <Route element={<LoginRegister />} path="/logout" />
-      <Route element={<LoginRegister />} path="/register" />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  );
+	return (
+		<Routes>
+			<Route element={<LoginRegister />} path="/auth/signin" />
+			<Route element={<Logout />} path="/auth/logout" />
+			<Route element={<PublicRoute />} path="*" />
+		</Routes>
+	)
 }
 
-
-export default AuthRouter;
+export default AuthRouter

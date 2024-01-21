@@ -8,12 +8,13 @@ import AppRouter from '@/app/router/AppRouter'
 const EntererComponent: React.FC = () => {
 	// const { isLoggedIn } = useSelector(selectAuth);
 	const isLoggedIn = window.localStorage.getItem('isLoggedIn')
+	const isLoggedInBool = isLoggedIn === 'true'
 
-	if (!isLoggedIn)
+	if (isLoggedInBool)
 		return (
 			<Fragment>
 				<Suspense fallback={<PageLoader />}>
-					<AuthRouter />
+					<AppRouter />
 				</Suspense>
 			</Fragment>
 		)
@@ -21,7 +22,7 @@ const EntererComponent: React.FC = () => {
 		return (
 			<Fragment>
 				<Suspense fallback={<PageLoader />}>
-					<AppRouter />
+					<AuthRouter />
 				</Suspense>
 			</Fragment>
 		)

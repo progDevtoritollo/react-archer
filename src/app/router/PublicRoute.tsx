@@ -1,10 +1,22 @@
-import { Navigate } from 'react-router-dom';
-import { FC } from "react";
+import { Navigate } from 'react-router-dom'
+import { FC, Fragment } from 'react'
 
 const PublicRoute: FC = () => {
-  if (window.localStorage.getItem('isLoggedIn')) {
-    return <Navigate to="/" replace />;
-  } else return <> Hello user </>;
-};
+	const isLoggedIn = window.localStorage.getItem('isLoggedIn')
+	const isLoggedInBool = isLoggedIn === 'true'
 
-export default PublicRoute;
+	if (isLoggedInBool) {
+		return (
+			<Fragment>
+				<Navigate to="/" replace />
+			</Fragment>
+		)
+	} else
+		return (
+			<Fragment>
+				<Navigate to="/auth/signin" replace />
+			</Fragment>
+		)
+}
+
+export default PublicRoute
