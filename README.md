@@ -11,7 +11,7 @@ and healthy competition among peers.
 ## Tech Stack
 
 **Client:** Vite, React, TypeScript, MaterialUI, ReduxToolKit, React Query, Axios, Vitest,
-react-hot-toast, react-tournament-brackets
+react-hot-toast, react-tournament-brackets, sccs, classNames
 
 ## References to
 

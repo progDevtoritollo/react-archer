@@ -4,13 +4,12 @@ import ActionCard from '@/shared/actionCard/ActionCard'
 
 import { Fragment } from 'react'
 import { Typography } from '@mui/material'
+import ShotScore from '@/shared/ui/shot-score-box'
 
 const TestPage: React.FC = () => {
 	return (
 		<Fragment>
-			<Typography
-				variant='h5'
-				color='secondary'>
+			<Typography variant="h5" color="secondary">
 				Test Page
 			</Typography>
 			<br />
@@ -20,7 +19,9 @@ const TestPage: React.FC = () => {
 			<br />
 			<TestTypography />
 			<br />
-			<ActionCard />
+			{Array.from({ length: 11 }).map((_, index) => (
+				<ShotScore key={index} shotScore={index} />
+			))}
 		</Fragment>
 	)
 }
