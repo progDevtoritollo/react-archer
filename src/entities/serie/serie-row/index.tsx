@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect, FC } from 'react'
 
 import SerieInfoSection from '@/shared/ui/serie-info-section'
 import ShotScore from '@/shared/ui/shot-score-box'
@@ -15,7 +15,7 @@ interface SerieProp {
 	isOpponents?: boolean
 }
 
-const Serie = ({
+const Serie: FC<SerieProp> = ({
 	isDuel = true,
 	seriesNumber = 1,
 	firstShot,
@@ -23,7 +23,7 @@ const Serie = ({
 	thirdShot,
 	Set_pts = 0,
 	isOpponents = false,
-}: SerieProp) => {
+}) => {
 	const [seriesScore, setSeriesScore] = useState(0)
 
 	useEffect(() => {

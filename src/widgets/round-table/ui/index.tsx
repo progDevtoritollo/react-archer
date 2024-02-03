@@ -205,7 +205,7 @@ const RoundTable = () => {
 		],
 	]
 	// const shotSeries = []
-	// for (let i = 0; i < shotSeries.length; i += 3) {
+	// for (let i = 0; i < items.length; i += 3) {
 	// 	shotSeries.push(items.slice(i, i + 3))
 	// }
 
