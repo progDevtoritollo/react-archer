@@ -5,7 +5,7 @@ import ActionCard from '@/shared/actionCard/ActionCard'
 import { Fragment } from 'react'
 import { Typography } from '@mui/material'
 import ShotScore from '@/shared/ui/shot-score-box'
-
+import RoundTable from '@/widgets/round-table/ui'
 const TestPage: React.FC = () => {
 	return (
 		<Fragment>
@@ -15,7 +15,7 @@ const TestPage: React.FC = () => {
 			<br />
 
 			{/* <TestTournament /> */}
-
+			<RoundTable />
 			<br />
 			<TestTypography />
 			<br />
