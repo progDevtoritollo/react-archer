@@ -2,7 +2,7 @@ import React from 'react'
 
 import './index.scss'
 
-export const TripleTarget = props => {
+export const TripleTarget = (props: any) => {
 	const { shotEvent } = props
 
 	return (
@@ -21,7 +21,7 @@ export const TripleTarget = props => {
 				fillRule="evenodd"
 				{...props}>
 				<defs id="prefix__defs4">
-					<style type="text/css" id="style6" xmlSpace="preserve" />
+					<style type="text/css" id="style6" />
 				</defs>
 				<g id="prefix__Warstwa_x0020_1" style={{ position: 'relative' }}>
 					<path
