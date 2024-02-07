@@ -1,11 +1,10 @@
 .serie {
 	margin-left: 10px;
 	margin-right: 10px;
-	max-width: 600px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-around;
 	.whose {
 		margin-top: 16px;
 		margin-left: 8px;
