@@ -1,32 +1,29 @@
-import { useState, useEffect, FC } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useState, FC } from 'react'
+import { useDispatch } from 'react-redux'
 
-// import { addShot, delLastShot, clearContestList } from 'entities/contest/model/slice'
-// import { selectContestData } from 'entities/contest/model/selectors'
+import {
+	addShot,
+	delLastShot,
+	clearContestList,
+	setTotalScore,
+	setDistance,
+} from '@/entities/contest/model/slice'
+import { Shot, contestTypeEnum } from '@/entities/contest/types'
 
 import './index.scss'
 import Bullet from '@/shared/ui/bullet'
 import Button from '@/shared/ui/button'
 
-interface BulletItem {
-	shotNumber: number
-	x: number
-	y: number
-	score: number
-}
-
 interface Props {
-	setShots: (shots: any[]) => void
+	shots: Shot[]
+	contestType: contestTypeEnum
 	postRoundContest: () => void
-	setTotalScore: (score: number) => void
-	setDistance: (distance: string) => void
 }
 
 const WithShots = (Target: React.ComponentType<any>) => {
-	const WithShots: FC<Props> = ({ setShots, postRoundContest, setTotalScore, setDistance }) => {
-		// const { contestType, items } = useSelector(selectContestData)
+	const WithShots: FC<Props> = ({ shots, contestType, postRoundContest }) => {
 		const dispatch = useDispatch()
-		const [bullet, setBullet] = useState<BulletItem[]>([])
+		const [bullet, setBullet] = useState<Shot[]>([])
 
 		const [isContestEnded, setContestEnded] = useState(false)
 
@@ -36,7 +33,7 @@ const WithShots = (Target: React.ComponentType<any>) => {
 
 		const handleOk = () => {
 			setBullet([])
-			// dispatch(clearContestList())
+			dispatch(clearContestList())
 			setIsModalOpen(false)
 			setContestEnded(false)
 			postRoundContest()
@@ -50,7 +47,7 @@ const WithShots = (Target: React.ComponentType<any>) => {
 			let bulletWithoutLast = bullet.slice(0, -1)
 
 			setBullet(bulletWithoutLast)
-			// dispatch(delLastShot())
+			dispatch(delLastShot())
 			setContestEnded(false)
 		}
 
@@ -61,8 +58,8 @@ const WithShots = (Target: React.ComponentType<any>) => {
 		const handleButtonClickFinishContest = () => {
 			// culc ContestScore
 			let ShotsSum = 0
-			// for (let i = 0; i < items.length; i++) {
-			// 	ShotsSum += items[i].score
+			// for (let i = 0; i < shots.length; i++) {
+			// 	ShotsSum += shots[i].score
 			// }
 			// setContestScore(Math.round(ShotsSum));
 			setContestScore(ShotsSum)
@@ -71,31 +68,30 @@ const WithShots = (Target: React.ComponentType<any>) => {
 			setIsModalOpen(true)
 
 			// contest request
-			// setShots(items)
 		}
 		const handleButtonClickSurrender = () => {
 			setBullet([])
-			// dispatch(clearContestList())
+			dispatch(clearContestList())
 		}
 
 		const shotHandleClick = (e: any) => {
-			// let contestLengthOfShots = contestType == 'round' ? 30 : 5
+			let contestLengthOfShots = contestType == contestTypeEnum.ROUND ? 30 : 5
 
-			// if (items.length >= contestLengthOfShots) {
-			// 	setContestEnded(true)
-			// 	alert('you already set all shots st this contest type')
+			if (shots.length >= contestLengthOfShots) {
+				setContestEnded(true)
+				alert('you already set all shots st this contest type')
 
-			// 	return 0
-			// }
+				return 0
+			}
 
-			const item = {
+			const newShot = {
 				shotNumber: bullet.length + 1,
 				x: e.nativeEvent.offsetX - 5,
 				y: e.nativeEvent.offsetY - 5,
 				score: +e.target.getAttribute('id'),
 			}
-			setBullet([...bullet, item])
-			// dispatch(addShot(item))
+			setBullet([...bullet, newShot])
+			dispatch(addShot(newShot))
 		}
 
 		// const handleSelectionDistance = event => {

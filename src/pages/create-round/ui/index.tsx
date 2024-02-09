@@ -1,5 +1,6 @@
 // import { useMutation } from 'react-query'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 
 import { FullTarget } from '@/shared/ui/targets/full-target'
@@ -12,14 +13,13 @@ import RoundTable from '@/widgets/round-table/ui'
 // import { ContestRound } from 'shared/api/contests/models'
 
 import './index.scss'
+import { selectContest } from '@/entities/contest/model/selectors'
 
 const TripleTargetShotWrapper = WithShots(TripleTarget)
 const FullTargetShotWrapper = WithShots(FullTarget)
 
 const RoundPage: React.FC = () => {
-	const [shots, setShots] = useState({})
-	const [totalScore, setTotalScore] = useState(0)
-	const [distance, setDistance] = useState('18')
+	const { shots, contestType } = useSelector(selectContest)
 
 	// const { isLoading: isLoadingRound, mutate: postRoundData } = useMutation<any, Error>(
 	// 	'create-round',
@@ -46,14 +46,13 @@ const RoundPage: React.FC = () => {
 			<h1 className="page-title">RoundPage</h1>
 			<div className="round-page__target-container">
 				<FullTargetShotWrapper
-					setShots={setShots}
+					contestType={contestType}
+					shots={shots}
 					postRoundContest={postRoundContest}
-					setTotalScore={setTotalScore}
-					setDistance={setDistance}
 				/>
 			</div>
 			<div className="round-page__round__table">
-				<RoundTable />
+				<RoundTable shots={shots} contestType={contestType} />
 			</div>
 		</div>
 	)

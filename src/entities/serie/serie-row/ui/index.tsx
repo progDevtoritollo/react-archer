@@ -3,10 +3,12 @@ import { useState, useEffect, FC } from 'react'
 import SerieInfoSection from '@/shared/ui/serie-info-section'
 import ShotScore from '@/shared/ui/shot-score-box'
 
+import { contestTypeEnum } from '@/entities/contest/types'
+
 import './index.scss'
 
 interface SerieProp {
-	isDuel?: boolean
+	contestType?: contestTypeEnum
 	seriesNumber?: number
 	firstShot?: number | undefined
 	secondShot?: number | undefined
@@ -16,7 +18,7 @@ interface SerieProp {
 }
 
 const Serie: FC<SerieProp> = ({
-	isDuel = true,
+	contestType = contestTypeEnum.ROUND,
 	seriesNumber = 1,
 	firstShot,
 	secondShot,
@@ -25,6 +27,7 @@ const Serie: FC<SerieProp> = ({
 	isOpponents = false,
 }) => {
 	const [seriesScore, setSeriesScore] = useState(0)
+	let isDuel = contestType == contestTypeEnum.DUEL
 
 	useEffect(() => {
 		if (firstShot != undefined && secondShot != undefined && thirdShot != undefined) {
