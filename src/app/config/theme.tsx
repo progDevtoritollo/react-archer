@@ -1,6 +1,7 @@
 import { createTheme } from '@mui/material/styles'
 import { red } from '@mui/material/colors'
 
+//colors
 declare module '@mui/material/styles' {
 	interface Palette {
 		text_dark: Palette['primary']
@@ -20,14 +21,16 @@ declare module '@mui/material/Typography' {
 declare module '@mui/material/styles' {
 	interface TypographyVariants {
 		logo: React.CSSProperties
+		NOT_FOUND_PAGE_Big: React.CSSProperties
+		NOT_FOUND_PAGE_little_underline: React.CSSProperties
 	}
-	// allow configuration using `createTheme`
 	interface TypographyVariantsOptions {
 		logo?: React.CSSProperties
+		NOT_FOUND_PAGE_Big?: React.CSSProperties
+		NOT_FOUND_PAGE_little_underline?: React.CSSProperties
 	}
 }
 
-// Update the Typography's variant prop options
 declare module '@mui/material/Typography' {
 	interface TypographyPropsVariantOverrides {
 		logo: true
@@ -64,6 +67,20 @@ const theme = createTheme({
 		logo: {
 			fontFamily: 'Brygada 1918',
 			// fontSize: '3rem',
+		},
+		NOT_FOUND_PAGE_Big: {
+			fontFamily: 'Inter',
+			fontWeight: 'bold',
+			fontSize: '48px',
+			wordSpacing: '4px',
+			letterSpacing: '1px',
+		},
+		NOT_FOUND_PAGE_little_underline: {
+			fontFamily: 'Inter',
+			fontWeight: '500',
+			fontSize: '28px',
+			textDecoration: 'underline',
+			color: '#A8A6B3',
 		},
 		h1: {
 			// fontSize: '3rem',
