@@ -16,7 +16,6 @@ const TestPage: React.FC = () => {
 			</Typography>
 			<br />
 			{/* <TestTournament /> */}
-			<RoundTable />
 			<FullTarget />
 			<br />
 			<TestTypography />

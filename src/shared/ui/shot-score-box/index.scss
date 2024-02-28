@@ -2,7 +2,7 @@
 	display: flex;
 	justify-content: center;
 	box-sizing: border-box;
-	width: 50px;
+	width: 50px; //! make 40px after  adding the margin between boxes in serie/serie-row in entities
 	align-items: center;
 	padding: 8px 15px;
 
@@ -13,23 +13,30 @@
 }
 .yellow-box {
 	border: 2px solid #fee24a;
+	color: #fee24a;
 }
 
 .red-box {
 	border: 2px solid #ff5259;
+	color: #ff5259;
 }
 .blue-box {
-	border: 2px solid #05acff;
+	border: 2px solid #7fbcbc;
+	color: #7fbcbc;
 }
 .black-box {
 	border: 2px solid #040000;
+	color: #040000;
 }
 .white-box {
 	border: 2px solid #cccccc;
+	color: #cccccc;
 }
 .gray-box {
 	border: 2px solid #a6a6a6;
+	color: #a6a6a6;
 }
 .what-box {
 	border: 2px solid green;
+	color: green;
 }

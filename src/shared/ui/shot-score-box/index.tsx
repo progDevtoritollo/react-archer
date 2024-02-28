@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import classNames from 'classnames'
+import { Typography } from '@mui/material'
 
 import './index.scss'
 
@@ -44,7 +45,9 @@ const ShotScore = ({ shotScore }: ShotScoreProps) => {
 
 	return (
 		<div className={classNames('shot-box', color)}>
-			{shotScore != undefined ? Math.round(shotScore) : <div>-</div>}
+			<Typography variant="input_bolt">
+				{shotScore != undefined ? Math.round(shotScore) : <div>-</div>}
+			</Typography>
 		</div>
 	)
 }
