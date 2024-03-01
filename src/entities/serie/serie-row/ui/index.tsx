@@ -6,6 +6,7 @@ import ShotScore from '@/shared/ui/shot-score-box'
 import { contestTypeEnum } from '@/entities/contest/types'
 
 import './index.scss'
+import { Typography } from '@mui/material'
 
 interface SerieProp {
 	contestType?: contestTypeEnum
@@ -39,18 +40,24 @@ const Serie: FC<SerieProp> = ({
 	return (
 		<div className="serie">
 			{isOpponents ? (
-				<div className="whose">Opponent</div>
+				<Typography sx={{ mt: '16px', ml: '8px' }} variant="input_semi_bolt">
+					Opponent
+				</Typography> // <div className="whose">Opponent</div>
 			) : isDuel ? (
-				<div className="whose you">You</div>
+				<Typography sx={{ mr: '47px' }} variant="input_semi_bolt">
+					You
+				</Typography> // <div className="whose you">You</div>
 			) : null}
 
 			<div className="serie__series-number">
-				{seriesNumber <= 1 ? <div className="title">Series num.</div> : null}
+				{seriesNumber <= 1 ? <Typography variant="input_semi_bolt">Series num.</Typography> : null}
 
 				<SerieInfoSection InfoNumber={seriesNumber <= 0 ? seriesNumber + 1 : seriesNumber} />
 			</div>
 			<div className="serie__shots-section">
-				{seriesNumber <= 1 && !isOpponents ? <div className="title">Shots</div> : null}
+				{seriesNumber <= 1 && !isOpponents ? (
+					<Typography variant="input_semi_bolt">Shots</Typography>
+				) : null}
 
 				<div className="shots-section__shots-container">
 					<ShotScore shotScore={firstShot} />
@@ -59,13 +66,13 @@ const Serie: FC<SerieProp> = ({
 				</div>
 			</div>
 			<div className="serie__series-score">
-				{seriesNumber <= 1 ? <div className="title">Series score</div> : null}
+				{seriesNumber <= 1 ? <Typography variant="input_semi_bolt">Series score</Typography> : null}
 
 				<SerieInfoSection InfoNumber={seriesScore} />
 			</div>
 			{isDuel ? (
 				<div className="serie__set-pts">
-					{/* <div className='title'>Set pts</div> */}
+					<Typography variant="input_semi_bolt">Set pts</Typography>
 					<SerieInfoSection InfoNumber={Set_pts} />
 				</div>
 			) : null}

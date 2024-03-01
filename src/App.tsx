@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+import { Fragment, Suspense } from 'react'
 import { Toaster } from 'react-hot-toast'
 
 import EntererComponent from '@/pages/EntererComponent'
@@ -11,12 +11,12 @@ window.localStorage.setItem('isLoggedIn', 'true')
 
 const App = () => {
 	return (
-		<>
+		<Fragment>
 			<Toaster />
 			<Suspense fallback={<PageLoader />}>
 				<EntererComponent />
 			</Suspense>
-		</>
+		</Fragment>
 	)
 }
 
