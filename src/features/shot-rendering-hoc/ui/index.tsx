@@ -122,7 +122,7 @@ const WithShots = (Target: React.ComponentType<any>) => {
 				<div className="target-with-shots-hoc" style={{ position: 'relative' }}>
 					<Target shotEvent={shotHandleClick} />
 					{bullet.map(value => {
-						return <Bullet value={value} />
+						return <Bullet value={value} key={crypto.randomUUID()} />
 					})}
 				</div>
 				<div className="target__bottom-interaction">
