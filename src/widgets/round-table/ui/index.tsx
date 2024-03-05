@@ -1,5 +1,5 @@
 // import { selectContestData } from 'entities/contest/model/selectors';
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import { useSelector } from 'react-redux'
 
 import Serie from '@/entities/serie/serie-row/ui'
@@ -14,17 +14,17 @@ interface Props {
 
 const RoundTable: FC<Props> = ({ shots, contestType }) => {
 	const shotSeries = []
-	for (let i = 0; i < shots.length; i += 3) {
+	for (let i = 0; i < 30; i += 3) {
 		shotSeries.push(shots.slice(i, i + 3))
 	}
 
 	return (
 		<div className="round-table">
 			{shotSeries.map((series, i) => (
-				<Serie
-					key={i + 20}
+				<MemoizedSerie
+					key={crypto.randomUUID()}
 					seriesNumber={i + 1}
-					firstShot={series[0].score}
+					firstShot={series[0]?.score}
 					secondShot={series[1]?.score}
 					thirdShot={series[2]?.score}
 					contestType={contestType}
@@ -33,5 +33,16 @@ const RoundTable: FC<Props> = ({ shots, contestType }) => {
 		</div>
 	)
 }
+
+const MemoizedSerie = memo(Serie, (prevProps, nextProps) => {
+	// Проверяем, изменились ли props, которые могут влиять на отображение Serie
+	return (
+		prevProps.seriesNumber === nextProps.seriesNumber &&
+		prevProps.firstShot === nextProps.firstShot &&
+		prevProps.secondShot === nextProps.secondShot &&
+		prevProps.thirdShot === nextProps.thirdShot &&
+		prevProps.contestType === nextProps.contestType
+	)
+})
 
 export default RoundTable
