@@ -5,8 +5,10 @@ import { useFormik } from 'formik'
 import * as yup from 'yup'
 
 import DatePicker from '@/shared/ui/date-picker'
+import PhotoUploader from '@/shared/ui/file-uploader'
 
 interface FormData {
+	image: File | null
 	name: string
 	surname: string
 	username: string
@@ -68,6 +70,7 @@ const UserSettings: React.FC = () => {
 	// useThem
 	const formik = useFormik({
 		initialValues: {
+			image: null,
 			name: '',
 			surname: '',
 			username: '',
@@ -90,6 +93,15 @@ const UserSettings: React.FC = () => {
 
 	return (
 		<form onSubmit={formik.handleSubmit}>
+			<Box sx={{ display: 'inline-flex', flexDirection: 'column', margin: '10px' }}>
+				<PhotoUploader
+					value={formik.values.image}
+					onChangeFile={file => {
+						formik.setFieldValue('image', file)
+					}}
+				/>
+			</Box>
+
 			<Box p={2}>
 				<InputTextField
 					label="First name"
@@ -208,8 +220,8 @@ const UserSettings: React.FC = () => {
 				/>
 
 				<InputTextField
-					id="base"
-					name="base"
+					id="bowBase"
+					name="bowBase"
 					label="Base"
 					margin="normal"
 					value={formik.values.bowBase}
