@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { contestSliceState, Shot, contestTypeEnum } from '../types'
+import { contestSliceState, Shot, contestTypeEnum, targetTypeEnum } from '../types'
 
 const initialState: contestSliceState = {
 	shots: [],
 	totalScore: 0,
 	distance: 0,
 	contestType: contestTypeEnum.ROUND,
+	targetType: targetTypeEnum.fullTarget,
 }
 
 const contestSlice = createSlice({
@@ -35,6 +36,9 @@ const contestSlice = createSlice({
 		setDistance(state, { payload }: PayloadAction<contestSliceState['distance']>) {
 			state.distance = payload
 		}, //? should i use string  or number here fore selection???
+		SetTargetType: (state, action) => {
+			state.targetType = action.payload
+		},
 	},
 })
 
