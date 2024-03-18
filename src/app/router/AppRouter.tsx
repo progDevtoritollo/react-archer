@@ -16,9 +16,9 @@ const AppRouter: FC = () => {
 				<Route index element={<div>Home</div>} />
 				<Route path="/test" element={<TestPage />} />
 				<Route path="/dashboard" element={<div>Dashboard</div>} />
-				<Route path="/create-round" element={<RoundPage />} />
+				<Route path="/quick-round" element={<RoundPage />} />
 			</Route>
-			<Route path="/user/">
+			<Route path="/user/" element={<PageLayout />}>
 				<Route path="settings" element={<UserSettings />} />
 				<Route path="notifications" element={<h5>Notifications</h5>} />
 			</Route>
