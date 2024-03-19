@@ -7,8 +7,6 @@ import './App.css'
 
 import { withProviders } from '@/app/providers/index'
 
-window.localStorage.setItem('isLoggedIn', 'true')
-
 const App = () => {
 	return (
 		<Fragment>

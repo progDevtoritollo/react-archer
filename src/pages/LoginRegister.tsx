@@ -1,17 +1,17 @@
 import { FC } from 'react'
 import { Navigate } from 'react-router-dom'
 import { Suspense, Fragment } from 'react'
-
+import { useSelector } from 'react-redux'
+import { Box } from '@mui/material'
 import PageLoader from '@/features/PageLoader'
+import AuthBlock from './auth/ui'
+import type { RootState } from '@/app/store'
 
 export const LoginRegister: FC = () => {
-	//! request for auth data and set data to localStorage & sessionStorage
-	// console.log(window.localStorage.getItem('isLoggedIn'), 'LoginRegister page')
+	//! request for auth data and set data to Redux && HTTPOnly
+	const isLoggedIn = useSelector((state: RootState) => state.session.isLoggedIn)
 
-	const isLoggedIn = window.localStorage.getItem('isLoggedIn')
-	const isLoggedInBool = isLoggedIn === 'true'
-
-	if (isLoggedInBool) {
+	if (isLoggedIn) {
 		return (
 			<Fragment>
 				<Navigate to="/" replace />
@@ -21,7 +21,9 @@ export const LoginRegister: FC = () => {
 		return (
 			<Fragment>
 				<Suspense fallback={<PageLoader />}>
-					<div>Sign in or Sign up Block </div>
+					<Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+						<AuthBlock />
+					</Box>
 				</Suspense>
 			</Fragment>
 		)

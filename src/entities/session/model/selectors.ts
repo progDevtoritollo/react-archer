@@ -1,3 +1,3 @@
-import { RootState } from 'app/store/index';
+import { RootState } from '@/app/store/index'
 
-export const selectAppSate = (state: RootState) => state.club;
+export const selectAppSate = (state: RootState) => state.session

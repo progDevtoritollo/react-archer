@@ -1,11 +1,13 @@
 import { Navigate } from 'react-router-dom'
 import { FC, Fragment } from 'react'
+import { useSelector } from 'react-redux'
+
+import type { RootState } from '@/app/store'
 
 const PublicRoute: FC = () => {
-	const isLoggedIn = window.localStorage.getItem('isLoggedIn')
-	const isLoggedInBool = isLoggedIn === 'true'
+	const isLoggedIn = useSelector((state: RootState) => state.session.isLoggedIn)
 
-	if (isLoggedInBool) {
+	if (isLoggedIn) {
 		return (
 			<Fragment>
 				<Navigate to="/" replace />
