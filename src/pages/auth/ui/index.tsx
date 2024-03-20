@@ -1,11 +1,33 @@
 import { Box, Paper, Typography } from '@mui/material'
-import { FC } from 'react'
+import { FC, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+
 import { GoogleAuthButton } from '@/shared/ui/buttons/google-auth-button'
 import { AppleAuthButton } from '@/shared/ui/buttons/apple-auth-button'
+import PageLoader from '@/features/PageLoader'
 
 // at rendering get url by  /api/auth/google/url - to get google auth link for user
 
 const AuthBlock: FC = () => {
+	const fetchGoogleUrl = async () => {
+		const response = await axios.get('http://localhost:8080/api/auth/google/url', {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
+		return response.data.url
+	}
+
+	const { data: url, isPending, isError } = useQuery({ queryKey: ['url'], queryFn: fetchGoogleUrl })
+
+	const handleAuthGoogle = () => {
+		window.location.href = url
+	}
+
+	if (isPending) return <PageLoader />
+	if (isError) return <div>Error</div>
+
 	return (
 		<Paper
 			sx={{
@@ -26,8 +48,9 @@ const AuthBlock: FC = () => {
 				<Typography>Sign in or Sign up</Typography>
 				<Box sx={{ mt: '50px' }}>
 					<GoogleAuthButton
-						onClick={() => {
+						onClickAuth={() => {
 							console.log('clicked Google')
+							handleAuthGoogle()
 						}}
 					/>
 				</Box>

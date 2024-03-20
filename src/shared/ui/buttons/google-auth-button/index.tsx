@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles'
 // import { Google_Logo_Icon } from '@/app/assets/icons/Google_Logo_Icon.svg'
 
 interface GoogleAuthButtonProps {
-	onClick: () => void
+	onClickAuth: React.MouseEventHandler<HTMLButtonElement>
 }
 
 const GoogleButton = styled(Button)({
@@ -24,9 +24,10 @@ const GoogleButton = styled(Button)({
 	boxShadow: '0px 0px 3px 0px rgba(0, 0, 0, 0.084), 0px 2px 3px 0px rgba(0, 0, 0, 0.168)',
 })
 
-export const GoogleAuthButton: FC<GoogleAuthButtonProps> = () => {
+export const GoogleAuthButton: FC<GoogleAuthButtonProps> = ({ onClickAuth }) => {
 	return (
 		<GoogleButton
+			onClick={onClickAuth}
 			startIcon={
 				<Icon sx={{ fontSize: 50 }}>
 					<svg

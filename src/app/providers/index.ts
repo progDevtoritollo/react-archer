@@ -5,9 +5,4 @@ import { withStore } from './with-store'
 import { withQuery } from './with-query'
 import { withMIU } from './with-mui'
 
-export const withProviders = compose(
-	withRouter,
-	withStore,
-	// withQuery,
-	withMIU,
-)
+export const withProviders = compose(withRouter, withStore, withQuery, withMIU)

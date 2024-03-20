@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  #   frontend:
+  #     image: 66567575/uf767fg767yyu:latest
+  # #    pull_policy: always
+  #     restart: on-failure
+  #     ports:
+  #       - "80:80"
+  #     depends_on:
+  #       - backend
+  #     links:
+  #       - backend
+
+  backend:
+    image: 810670285/ordradmither:latest
+    pull_policy: always
+    restart: on-failure
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    environment:
+      spring.datasource.url: 'jdbc:postgresql://postgres:5432/archer'
+
+  postgres:
+    image: 'postgres'
+    pull_policy: always
+    restart: on-failure
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=archer
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
