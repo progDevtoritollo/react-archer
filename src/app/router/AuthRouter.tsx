@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 import { lazy, FC } from 'react'
 
-const Logout = lazy(() => import('@/pages/Logout'))
-import { LoginRegister } from '@/pages/LoginRegister'
+const Logout = lazy(() => import('@/pages/auth/logout/Logout'))
+import { LoginRegister } from '@/pages/auth/LoginRegister'
 import PublicRoute from './PublicRoute'
 
 const AuthRouter: FC = () => {

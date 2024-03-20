@@ -3,8 +3,9 @@ import { Navigate } from 'react-router-dom'
 import { Suspense, Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import { Box } from '@mui/material'
+
 import PageLoader from '@/features/PageLoader'
-import AuthBlock from './auth/ui'
+import AuthBlock from './auth-block/ui'
 import type { RootState } from '@/app/store'
 
 export const LoginRegister: FC = () => {

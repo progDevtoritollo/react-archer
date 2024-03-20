@@ -7,7 +7,7 @@ import RoundPage from '@/pages/create-round/ui'
 import UserSettings from '@/pages/user-settings/ui'
 const TestPage = lazy(() => import('@/pages/TestPage'))
 const NotFound = lazy(() => import('@/pages/404/ui/NotFound'))
-const Logout = lazy(() => import('@/pages/Logout'))
+const Logout = lazy(() => import('@/pages/auth/logout/Logout'))
 
 const AppRouter: FC = () => {
 	return (
