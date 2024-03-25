@@ -1,5 +1,9 @@
 import { lazy, FC } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { useQuery } from '@tanstack/react-query'
 
 import PublicRoute from '@/app/router/PublicRoute'
 import PageLayout from '@/app/layout/PageLayout'
@@ -9,7 +13,37 @@ const TestPage = lazy(() => import('@/pages/TestPage'))
 const NotFound = lazy(() => import('@/pages/404/ui/NotFound'))
 const Logout = lazy(() => import('@/pages/auth/logout/Logout'))
 
+import { URL_GET_IS_AUTH } from '@/app/config/config_API'
+import { SetLoggedIn } from '@/entities/session/model/slice'
+import PageLoader from '@/features/PageLoader'
+
+const getAuthCheck = async () => {
+	const response = await axios.get(URL_GET_IS_AUTH, {
+		withCredentials: true,
+
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	})
+	return response.data
+}
+
 const AppRouter: FC = () => {
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
+
+	const { isError, isPending } = useQuery({ queryKey: ['getHello'], queryFn: getAuthCheck })
+
+	if (isPending) {
+		return <PageLoader />
+	}
+	if (isError) {
+		{
+			dispatch(SetLoggedIn(false))
+			navigate('/auth/signin')
+		}
+	}
+
 	return (
 		<Routes>
 			<Route path="/" element={<PageLayout />}>

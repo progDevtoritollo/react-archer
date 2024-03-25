@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import axios from 'axios'
-
 import PageLoader from '@/features/PageLoader'
 import { SetLoggedIn } from '@/entities/session/model/slice'
+
+import API_URL from '@/app/config/config_API'
 
 export const HandleAuth: FC = () => {
 	const dispatch = useDispatch()
@@ -23,31 +24,24 @@ export const HandleAuth: FC = () => {
 
 	const getTokenUrl = async () => {
 		const codeParam = getParam()
-		const response = await axios.get(
-			`http://localhost:8080/api/auth/google/callback?code=${codeParam}`,
-			{
-				headers: {
-					'Content-Type': 'application/json',
-				},
+		const response = await axios.get(API_URL + `/auth/google/callback?code=${codeParam}`, {
+			withCredentials: true,
+			headers: {
+				'Content-Type': 'application/json',
 			},
-		)
+		})
 		return response.data
 	}
 
 	const { status, isError, isSuccess } = useQuery({ queryKey: ['token'], queryFn: getTokenUrl })
 
-	if (status === 'success') {
+	if (isSuccess) {
 		console.log(isSuccess, status)
 		dispatch(SetLoggedIn(true))
-		navigate('/')
+		navigate('/user/settings')
 	}
 
 	console.log(status)
-
-	// if (isSuccess) {
-	// 	dispatch(SetLoggedIn(true))
-	// 	navigate('/')
-	// }
 
 	if (isError) return <div>Error</div>
 

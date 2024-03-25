@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import { styled } from '@mui/material/styles'
 import { TextField, Button, Select, FormControl, InputLabel, Box } from '@mui/material'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
+
+import axios from 'axios'
+import { useQuery } from '@tanstack/react-query'
 
 import DatePicker from '@/shared/ui/date-picker'
 import PhotoUploader from '@/shared/ui/file-uploader'
@@ -66,7 +69,7 @@ const InputTextField = styled(TextField)({
 	},
 })
 
-const UserSettings: React.FC = () => {
+const UserSettings: FC = () => {
 	// useThem
 	const formik = useFormik({
 		initialValues: {

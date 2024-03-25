@@ -6,12 +6,11 @@ import axios from 'axios'
 import { GoogleAuthButton } from '@/shared/ui/buttons/google-auth-button'
 import { AppleAuthButton } from '@/shared/ui/buttons/apple-auth-button'
 import PageLoader from '@/features/PageLoader'
-
-// at rendering get url by  /api/auth/google/url - to get google auth link for user
+import API_URL from '@/app/config/config_API'
 
 const AuthBlock: FC = () => {
 	const fetchGoogleUrl = async () => {
-		const response = await axios.get('http://localhost:8080/api/auth/google/url', {
+		const response = await axios.get(API_URL + '/auth/google/url', {
 			headers: {
 				'Content-Type': 'application/json',
 			},
@@ -49,7 +48,6 @@ const AuthBlock: FC = () => {
 				<Box sx={{ mt: '50px' }}>
 					<GoogleAuthButton
 						onClickAuth={() => {
-							console.log('clicked Google')
 							handleAuthGoogle()
 						}}
 					/>

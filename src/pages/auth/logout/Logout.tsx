@@ -13,6 +13,7 @@ const Logout: FC = () => {
 		window.sessionStorage.removeItem('isLoggedIn') //? change to sessionStorage
 		window.localStorage.removeItem('auth') //? change to sessionStorage
 		navigate('/auth/signin')
+		// cookie.remove('auth_JWT') useCookie  how del cookie with flag httpOnly
 	}, [])
 
 	return <PageLoader />
