@@ -1,27 +1,23 @@
 import { Box, Paper, Typography } from '@mui/material'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
+import toast from 'react-hot-toast'
 
 import { GoogleAuthButton } from '@/shared/ui/buttons/google-auth-button'
 import { AppleAuthButton } from '@/shared/ui/buttons/apple-auth-button'
 import PageLoader from '@/features/PageLoader'
-import API_URL from '@/app/config/config_API'
+
+import { getGoogleURL } from '@/entities/session/api/get-google-auth-url'
 
 const AuthBlock: FC = () => {
-	const fetchGoogleUrl = async () => {
-		const response = await axios.get(API_URL + '/auth/google/url', {
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		})
-		return response.data.url
-	}
-
-	const { data: url, isPending, isError } = useQuery({ queryKey: ['url'], queryFn: fetchGoogleUrl })
+	const { data: url, isPending, isError } = useQuery({ queryKey: ['url'], queryFn: getGoogleURL })
 
 	const handleAuthGoogle = () => {
-		window.location.href = url
+		if (url) {
+			window.location.href = url
+		} else {
+			toast.error('Failed to access services')
+		}
 	}
 
 	if (isPending) return <PageLoader />

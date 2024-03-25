@@ -1,7 +1,7 @@
 import { Fragment, Suspense } from 'react'
 import { Toaster } from 'react-hot-toast'
 
-import EntererComponent from '@/pages/EntererComponent'
+import EntererComponent from '@/app/router/EntererComponent'
 import PageLoader from '@/features/PageLoader'
 import './App.css'
 

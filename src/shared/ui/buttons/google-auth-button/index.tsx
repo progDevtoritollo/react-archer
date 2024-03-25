@@ -22,6 +22,10 @@ const GoogleButton = styled(Button)({
 	lineHeight: 1.5,
 	backgroundColor: '#FFFFF',
 	boxShadow: '0px 0px 3px 0px rgba(0, 0, 0, 0.084), 0px 2px 3px 0px rgba(0, 0, 0, 0.168)',
+	'&:hover': {
+		backgroundColor: '#000000',
+		color: ' #fff',
+	},
 })
 
 export const GoogleAuthButton: FC<GoogleAuthButtonProps> = ({ onClickAuth }) => {

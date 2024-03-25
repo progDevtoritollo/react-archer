@@ -22,6 +22,13 @@ const AppleButton = styled(Button)({
 	lineHeight: 1.5,
 	backgroundColor: '#000000',
 	boxShadow: '0px 0px 3px 0px rgba(0, 0, 0, 0.084), 0px 2px 3px 0px rgba(0, 0, 0, 0.168)',
+	'&:hover': {
+		'& svg path': {
+			fill: 'black',
+		},
+		backgroundColor: 'transparent',
+		color: 'rgba(0, 0, 0, 0.54)',
+	},
 })
 
 export const AppleAuthButton: FC<AppleAuthButtonProps> = ({ onClickAuth }) => {
@@ -29,7 +36,10 @@ export const AppleAuthButton: FC<AppleAuthButtonProps> = ({ onClickAuth }) => {
 		<AppleButton
 			onClick={onClickAuth}
 			startIcon={
-				<Icon sx={{ fontSize: 50 }}>
+				<Icon
+					sx={{
+						fontSize: 50,
+					}}>
 					<svg
 						width="25"
 						height="25"
