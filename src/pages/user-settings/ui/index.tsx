@@ -4,11 +4,10 @@ import { TextField, Button, Select, FormControl, InputLabel, Box } from '@mui/ma
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
-import axios from 'axios'
-import { useQuery } from '@tanstack/react-query'
-
 import DatePicker from '@/shared/ui/date-picker'
 import PhotoUploader from '@/shared/ui/file-uploader'
+
+import { useSession } from '@/entities/session/hooks/use-session'
 
 interface FormData {
 	image: File | null

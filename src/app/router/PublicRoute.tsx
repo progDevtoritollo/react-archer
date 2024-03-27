@@ -1,11 +1,10 @@
 import { Navigate } from 'react-router-dom'
 import { FC, Fragment } from 'react'
-import { useSelector } from 'react-redux'
 
-import type { RootState } from '@/app/store'
+import { useSession } from '@/entities/session/hooks/use-session'
 
 const PublicRoute: FC = () => {
-	const isLoggedIn = useSelector((state: RootState) => state.session.isLoggedIn)
+	const { isLoggedIn } = useSession()
 
 	if (isLoggedIn) {
 		return (

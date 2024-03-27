@@ -6,18 +6,20 @@ const initialState = {
 	isLoggedIn: false,
 	userData: {
 		userId: 0,
+		name: '',
+		surname: '',
+		username: '',
+		email: '',
+		phoneNumber: 0,
+		birthday: '',
+		archerLevel: '',
 	},
-
-	// token: '',
 }
 
 export const appSlice = createSlice({
 	name: 'session',
 	initialState: initialState,
 	reducers: {
-		// SetJWToken: (state, action) => {
-		// 	state.token = action.payload
-		// },
 		SetLoggedIn: (state, action: PayloadAction<sessionType['isLoggedIn']>) => {
 			state.isLoggedIn = action.payload
 		},
@@ -27,10 +29,6 @@ export const appSlice = createSlice({
 	},
 })
 
-export const {
-	// SetJWToken,
-	SetLoggedIn,
-	SetUserData,
-} = appSlice.actions
+export const { SetLoggedIn, SetUserData } = appSlice.actions
 
 export default appSlice.reducer

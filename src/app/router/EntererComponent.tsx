@@ -1,18 +1,19 @@
 import { Suspense, Fragment, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useQuery } from '@tanstack/react-query'
 
 import PageLoader from '@/features/PageLoader'
 import AuthRouter from '@/app/router/AuthRouter'
 import AppRouter from '@/app/router/AppRouter'
-import type { RootState } from '@/app/store'
 
+import { useSession } from '@/entities/session/hooks/use-session'
 import { SetLoggedIn } from '@/entities/session/model/slice'
 
 import { getAuthCheck } from '@/entities/session/api/get-is-auth'
 
 const EntererComponent: React.FC = () => {
-	const isLoggedIn = useSelector((state: RootState) => state.session.isLoggedIn)
+	const { isLoggedIn } = useSession()
+
 	const dispatch = useDispatch()
 
 	const { isError, isPending, isSuccess } = useQuery({

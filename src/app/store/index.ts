@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { useDispatch } from 'react-redux'
 
 // import notification from 'entities/notification/model/slice';
 import contest from '@/entities/contest/model/slice'
@@ -20,7 +19,4 @@ export const store = configureStore({
 })
 
 export type RootState = ReturnType<typeof store.getState>
-
-type AppDispatch = typeof store.dispatch
-
-export const useAppDispatch = () => useDispatch<AppDispatch>()
+export type AppDispatch = typeof store.dispatch
