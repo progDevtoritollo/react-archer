@@ -16,12 +16,12 @@ const NotFound = () => {
 				alt="Image page 404."
 				src={img_404}
 			/>
-			<Typography sx={{ mt: '20px', mb: '10px' }} variant="NOT_FOUND_PAGE_Big" component="div">
+			<Typography sx={{ mt: '20px', mb: '10px' }} variant="CapsLockHighlight" component="div">
 				404 NOT FOUND PAGE
 			</Typography>
 
 			<Link to="/">
-				<Typography variant="NOT_FOUND_PAGE_little_underline" component="div">
+				<Typography variant="UnderlinedText" component="div">
 					Back to main page
 				</Typography>
 			</Link>

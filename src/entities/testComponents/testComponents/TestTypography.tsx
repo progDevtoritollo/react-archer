@@ -7,21 +7,21 @@ const TestTournament = () => {
 			<Typography variant="logo" component="h1">
 				Archer
 			</Typography>
-			<Typography variant="h1" color="text_dark.main" component="span">
-				Activity
-			</Typography>
-			/
-			<Typography variant="h1" color="#A8A6B3" component="span">
-				User
-			</Typography>
-			<Typography variant="h2">Settings </Typography>
-			<Typography variant="paragraph1" component="h1" color="#A8A6B3">
-				duel with Руслан Тушенцов
-			</Typography>
-			<Typography variant="paragraph2" component="h1">
-				Phone number
-			</Typography>
-			<Typography variant="button">Opponent</Typography>
+			<Typography variant="h1">Headline 1</Typography>
+			<Typography variant="h2">Headline 2</Typography>
+			<Typography variant="h3">Headline 3</Typography>
+			<Typography variant="h4">Headline 4</Typography>
+			<Typography variant="paragraph1">Paragraph 1</Typography>
+			<Typography variant="paragraph2">Paragraph 2</Typography>
+			<Typography variant="paragraph3">Paragraph 3</Typography>
+			<Typography variant="paragraph4">Paragraph 4</Typography>
+			<Typography variant="body1">Body-1</Typography>
+			<Typography variant="button">Button</Typography>
+			<Typography variant="TextField">Text field</Typography>
+			<Typography variant="textSearch">Text search</Typography>
+			<Typography variant="TextInputField">Text input field</Typography>
+			<Typography variant="CapsLockHighlight">Caps Lock Highlight</Typography>
+			<Typography variant="UnderlinedText">Underlined text</Typography>
 		</>
 	)
 }

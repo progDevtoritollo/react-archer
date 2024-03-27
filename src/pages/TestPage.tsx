@@ -11,7 +11,7 @@ import { FullTarget } from '@/shared/ui/targets/full-target'
 const TestPage: React.FC = () => {
 	return (
 		<Fragment>
-			<Typography variant="h5" color="secondary">
+			<Typography variant="h1" color="secondary">
 				Test Page
 			</Typography>
 			<br />

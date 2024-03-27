@@ -1,5 +1,4 @@
 import { createTheme } from '@mui/material/styles'
-import { red } from '@mui/material/colors'
 
 //colors
 declare module '@mui/material/styles' {
@@ -24,59 +23,60 @@ declare module '@mui/material/styles' {
 
 		paragraph1: React.CSSProperties
 		paragraph2: React.CSSProperties
+		paragraph3: React.CSSProperties
+		paragraph4: React.CSSProperties
 
-		input_regular: React.CSSProperties
-		input_semi_bolt: React.CSSProperties
-		input_bolt: React.CSSProperties
+		TextInputField: React.CSSProperties
+		TextField: React.CSSProperties
+		textSearch: React.CSSProperties
 
-		log_in_or_sign_up_medium: React.CSSProperties
-		log_in_or_sign_up_light: React.CSSProperties
-
-		NOT_FOUND_PAGE_Big: React.CSSProperties
-		NOT_FOUND_PAGE_little_underline: React.CSSProperties
+		CapsLockHighlight: React.CSSProperties
+		UnderlinedText: React.CSSProperties
 	}
 	interface TypographyVariantsOptions {
 		logo?: React.CSSProperties
-
+		h1?: React.CSSProperties
+		h2?: React.CSSProperties
+		h3?: React.CSSProperties
+		h4?: React.CSSProperties
 		paragraph1?: React.CSSProperties
 		paragraph2?: React.CSSProperties
+		paragraph3?: React.CSSProperties
+		paragraph4?: React.CSSProperties
 
-		input_regular?: React.CSSProperties
-		input_semi_bolt?: React.CSSProperties
-		input_bolt?: React.CSSProperties
+		CapsLockHighlight?: React.CSSProperties
 
-		log_in_or_sign_up_medium?: React.CSSProperties
-		log_in_or_sign_up_light?: React.CSSProperties
-
-		NOT_FOUND_PAGE_Big?: React.CSSProperties
-		NOT_FOUND_PAGE_little_underline?: React.CSSProperties
+		TextInputField?: React.CSSProperties
+		TextField?: React.CSSProperties
+		UnderlinedText?: React.CSSProperties
+		textSearch?: React.CSSProperties
 	}
 }
 
 declare module '@mui/material/Typography' {
 	interface TypographyPropsVariantOverrides {
 		logo: true
-
+		h1: true
+		h2: true
+		h3: true
+		h4: true
 		paragraph1: true
 		paragraph2: true
+		paragraph3: true
+		paragraph4: true
+		body1: true
 
-		input_regular: true
-		input_semi_bolt: true
-		input_bolt: true
+		CapsLockHighlight: true
+		button: true
+		TextInputField: true
+		TextField: true
+		UnderlinedText: true
+		textSearch: true
 
-		log_in_or_sign_up_medium: true
-		log_in_or_sign_up_light: true
-
-		NOT_FOUND_PAGE_Big: true
-		NOT_FOUND_PAGE_little_underline: true
-
-		h3: false
-		h4: false
 		h5: false
 		h6: false
 		subtitle1: false
 		subtitle2: false
-		body1: false
 		body2: false
 		caption: false
 		overline: false
@@ -117,24 +117,46 @@ const theme = createTheme({
 		},
 		h1: {
 			fontFamily: 'Inter',
-			fontSize: '20px',
-			fontWeight: '600',
+			fontSize: '28px',
+			fontWeight: '500',
+			lineHeight: '33px',
 		},
 		h2: {
+			fontFamily: 'Inter',
+			fontSize: '20px',
+			fontWeight: '500',
+		},
+		h3: {
+			fontFamily: 'Inter',
+			fontSize: '18px',
+			fontWeight: '600',
+		},
+		h4: {
+			fontFamily: 'Inter',
+			fontSize: '17px',
+			fontWeight: '600',
+		},
+		paragraph1: {
 			fontFamily: 'Inter',
 			fontSize: '18px',
 			fontWeight: '500',
 		},
-		paragraph1: {
+		paragraph2: {
 			fontFamily: 'Inter',
 			fontSize: '16px',
 			fontWeight: '500',
 		},
-		paragraph2: {
+		paragraph3: {
 			fontFamily: 'Inter',
 			fontSize: '14px',
 			fontWeight: '500',
 		},
+		paragraph4: {
+			fontFamily: 'Inter',
+			fontSize: '12px',
+			fontWeight: '500',
+		},
+		body1: { fontFamily: 'Inter', fontSize: '16px', fontWeight: '500' },
 
 		button: {
 			fontFamily: 'Inter',
@@ -144,50 +166,38 @@ const theme = createTheme({
 		},
 
 		//? input
-		input_regular: {
+		TextInputField: {
 			fontFamily: 'Inter',
 			fontSize: '12px',
 			fontWeight: '400',
 			lineHeight: '16px',
 		},
-		input_semi_bolt: {
+		TextField: {
 			fontFamily: 'Inter',
 			fontSize: '12px',
 			fontWeight: '600',
-		},
-		input_bolt: {
-			fontFamily: 'Inter',
-			fontSize: '12px',
-			fontWeight: '700',
 			lineHeight: '16px',
 		},
 
-		//? log_in_or_sign_up
-		log_in_or_sign_up_medium: {
+		CapsLockHighlight: {
 			fontFamily: 'Inter',
-			fontSize: '28px',
-			fontWeight: '500',
-		},
-		log_in_or_sign_up_light: {
-			fontFamily: 'Inter',
-			fontSize: '18px',
-			fontWeight: '300',
-		},
-
-		//? Not found page
-		NOT_FOUND_PAGE_Big: {
-			fontFamily: 'Inter',
-			fontWeight: 'bold',
+			fontWeight: '700',
 			fontSize: '48px',
 			wordSpacing: '4px',
 			letterSpacing: '1px',
 		},
-		NOT_FOUND_PAGE_little_underline: {
+		UnderlinedText: {
 			fontFamily: 'Inter',
-			fontWeight: '500',
-			fontSize: '28px',
+			fontWeight: '600',
+			fontSize: '20px',
 			textDecoration: 'underline',
 			color: '#A8A6B3',
+		},
+		textSearch: {
+			fontFamily: 'Inter',
+			fontSize: '12px',
+			fontWeight: '400',
+			lineHeight: '16px',
 		},
 	},
 })

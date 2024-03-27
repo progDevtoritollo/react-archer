@@ -5,7 +5,6 @@ import toast from 'react-hot-toast'
 
 import { GoogleAuthButton } from '@/shared/ui/buttons/google-auth-button'
 import { AppleAuthButton } from '@/shared/ui/buttons/apple-auth-button'
-import PageLoader from '@/features/PageLoader'
 
 import { getGoogleURL } from '@/entities/session/api/get-google-auth-url'
 
@@ -20,8 +19,9 @@ const AuthBlock: FC = () => {
 		}
 	}
 
-	if (isPending) return <PageLoader />
-	if (isError) return <div>Error</div>
+	if (isError) {
+		toast.error('Server don`t request')
+	}
 
 	return (
 		<Paper
@@ -40,7 +40,7 @@ const AuthBlock: FC = () => {
 			square={false}
 			elevation={2}>
 			<Box>
-				<Typography>Sign in or Sign up</Typography>
+				<Typography variant="h1">Sign in or Sign up</Typography>
 				<Box sx={{ mt: '50px' }}>
 					<GoogleAuthButton
 						onClickAuth={() => {
@@ -51,7 +51,7 @@ const AuthBlock: FC = () => {
 				<Box sx={{ mt: '15px' }}>
 					<AppleAuthButton
 						onClickAuth={() => {
-							console.log('clicked Apple')
+							toast.error('We don`t want to by access for this service for 100$ per month 🙃')
 						}}
 					/>
 				</Box>
