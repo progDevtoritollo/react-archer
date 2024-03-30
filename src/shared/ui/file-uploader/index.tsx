@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Box, Button, styled, Avatar } from '@mui/material'
+import { Box, Button, styled, Avatar, Typography } from '@mui/material'
 import toast from 'react-hot-toast'
 import Compressor from 'compressorjs'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
@@ -55,15 +55,20 @@ const PhotoUploader: FC<PhotoUploaderProps> = ({ username, value, onChangeFile }
 			<Avatar
 				alt={username}
 				src={typeof value === 'string' ? value : imageUrl}
-				sx={{ width: 150, height: 150 }}
+				sx={{ width: 150, height: 150, mb: '10px' }}
 			/>
 			<Button
 				component="label"
 				role={undefined}
-				variant="contained"
-				tabIndex={-1}
-				startIcon={<CloudUploadIcon />}>
-				Attach file
+				variant="text"
+				sx={{
+					color: 'inherit',
+					backgroundColor: 'transparent',
+					border: 'none',
+					padding: 0,
+					textTransform: 'none',
+				}}>
+				<Typography variant="button">Change image profile</Typography>
 				<VisuallyHiddenInput
 					accept="image/*"
 					type="file"
