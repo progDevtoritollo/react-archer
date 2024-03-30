@@ -1,21 +1,22 @@
-import React, { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import { styled } from '@mui/material/styles'
 import { TextField, Button, Select, FormControl, InputLabel, Box } from '@mui/material'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
+import isEqual from 'lodash/isEqual'
+import { MuiTelInput } from 'mui-tel-input'
 
 import DatePicker from '@/shared/ui/date-picker'
 import PhotoUploader from '@/shared/ui/file-uploader'
 
-import { useSession } from '@/entities/session/hooks/use-session'
-
 interface FormData {
-	image: File | null
+	[key: string]: File | null | string | number
+	image: File | null | string
 	name: string
 	surname: string
 	username: string
 	email: string
-	phoneNumber: number
+	phoneNumber: string
 	archerLevel: string
 	birthday: string
 	bowXParameter: number
@@ -69,7 +70,20 @@ const InputTextField = styled(TextField)({
 })
 
 const UserSettings: FC = () => {
-	// useThem
+	const [serverFormValues, setServerFormValues] = useState<FormData>({
+		image: null,
+		name: '',
+		surname: '',
+		username: '',
+		email: '',
+		phoneNumber: '',
+		birthday: '2001-04-07',
+		archerLevel: '',
+		bowXParameter: 0,
+		bowYParameter: 0,
+		bowBase: 0,
+	})
+
 	const formik = useFormik({
 		initialValues: {
 			image: null,
@@ -77,7 +91,7 @@ const UserSettings: FC = () => {
 			surname: '',
 			username: '',
 			email: '',
-			phoneNumber: 0,
+			phoneNumber: '',
 			birthday: '2001-04-07',
 			archerLevel: '',
 			bowXParameter: 0,
@@ -86,10 +100,23 @@ const UserSettings: FC = () => {
 		},
 		validationSchema: validationSchema,
 		onSubmit: (values: FormData) => {
-			console.log(JSON.stringify(values, null, 2))
-			// Обработка отправки данных на сервер
+			const changedFields = Object.keys(values).filter(
+				key => !isEqual(values[key], serverFormValues[key]),
+			)
+			const changedValues = changedFields.reduce((acc, key) => {
+				acc[key as keyof FormData] = values[key as keyof FormData]
+				return acc
+			}, {} as Partial<FormData>)
+
+			console.log(JSON.stringify(changedValues, null, 2))
 		},
 	})
+
+	// useEffect(() => {
+	// 	fetchUserSettingsData().then((userData: FormData) => {
+	// 		setServerFormValues(userData)
+	// 	})
+	// }, [])
 
 	console.log(formik.values)
 
@@ -150,13 +177,15 @@ const UserSettings: FC = () => {
 					helperText={formik.touched.email && formik.errors.email}
 				/>
 
-				<InputTextField
+				<MuiTelInput
 					id="phone"
 					name="phoneNumber"
 					label="Phone number"
 					margin="normal"
 					value={formik.values.phoneNumber}
-					onChange={formik.handleChange}
+					onChange={value => {
+						formik.setFieldValue('phoneNumber', value)
+					}}
 					onBlur={formik.handleBlur}
 					error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
 					helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
