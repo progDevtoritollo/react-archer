@@ -117,6 +117,14 @@ const UserSettings: FC = () => {
 	// 		setServerFormValues(userData)
 	// 	})
 	// }, [])
+	const transformValueToInput = (value: number) => {
+		return value / 10
+	}
+
+	// Функция для умножения на 10 перед записью в форму
+	const transformInputToValue = (inputValue: number) => {
+		return inputValue * 10
+	}
 
 	console.log(formik.values)
 
@@ -232,19 +240,44 @@ const UserSettings: FC = () => {
 					name="bowXParameter"
 					label="X"
 					margin="normal"
-					value={formik.values.bowXParameter}
-					onChange={formik.handleChange}
+					type="number"
+					inputProps={{
+						step: 0.1,
+					}}
+					value={transformValueToInput(formik.values.bowXParameter)}
+					onChange={event => {
+						const transformedValue = transformInputToValue(parseFloat(event.target.value))
+						formik.handleChange({
+							target: {
+								name: 'bowXParameter',
+								value: transformedValue,
+							},
+						})
+					}}
 					onBlur={formik.handleBlur}
 					error={formik.touched.bowXParameter && Boolean(formik.errors.bowXParameter)}
 					helperText={formik.touched.bowXParameter && formik.errors.bowXParameter}
 				/>
+
 				<InputTextField
 					id="bowYParameter"
 					name="bowYParameter"
 					label="Y"
 					margin="normal"
-					value={formik.values.bowYParameter}
-					onChange={formik.handleChange}
+					type="number"
+					inputProps={{
+						step: 0.1,
+					}}
+					value={transformValueToInput(formik.values.bowYParameter)}
+					onChange={event => {
+						const transformedValue = transformInputToValue(parseFloat(event.target.value))
+						formik.handleChange({
+							target: {
+								name: 'bowYParameter',
+								value: transformedValue,
+							},
+						})
+					}}
 					onBlur={formik.handleBlur}
 					error={formik.touched.bowYParameter && Boolean(formik.errors.bowYParameter)}
 					helperText={formik.touched.bowYParameter && formik.errors.bowYParameter}
@@ -255,8 +288,20 @@ const UserSettings: FC = () => {
 					name="bowBase"
 					label="Base"
 					margin="normal"
-					value={formik.values.bowBase}
-					onChange={formik.handleChange}
+					type="number"
+					inputProps={{
+						step: 0.1,
+					}}
+					value={transformValueToInput(formik.values.bowBase)}
+					onChange={event => {
+						const transformedValue = transformInputToValue(parseFloat(event.target.value))
+						formik.handleChange({
+							target: {
+								name: 'bowBase',
+								value: transformedValue,
+							},
+						})
+					}}
 					onBlur={formik.handleBlur}
 					error={formik.touched.bowBase && Boolean(formik.errors.bowBase)}
 					helperText={formik.touched.bowBase && formik.errors.bowBase}
