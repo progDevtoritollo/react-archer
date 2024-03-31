@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import PageLoader from '@/features/PageLoader'
-import { SetLoggedIn } from '@/entities/session/model/slice'
+import { setLoggedIn } from '@/entities/session/model/slice'
 
 import { getToken } from '@/entities/session/api/get-token'
 
@@ -15,8 +15,7 @@ export const HandleAuth: FC = () => {
 
 	useEffect(() => {
 		if (isSuccess) {
-			//* make here isAuth request here '/api/hello'?
-			dispatch(SetLoggedIn(true))
+			dispatch(setLoggedIn(true))
 			navigate('/user/settings')
 		}
 	}, [isSuccess, dispatch, navigate])

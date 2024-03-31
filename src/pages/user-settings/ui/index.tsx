@@ -5,31 +5,21 @@ import { useFormik } from 'formik'
 import * as yup from 'yup'
 import isEqual from 'lodash/isEqual'
 import { MuiTelInput } from 'mui-tel-input'
+import { useQuery } from '@tanstack/react-query'
 
 import DatePicker from '@/shared/ui/date-picker'
 import PhotoUploader from '@/shared/ui/file-uploader'
-
-interface FormData {
-	[key: string]: File | null | string | number
-	image: File | null | string
-	name: string
-	surname: string
-	username: string
-	email: string
-	phoneNumber: string
-	archerLevel: string
-	birthday: string
-	bowXParameter: number
-	bowYParameter: number
-	bowBase: number
-}
+import { userDataRdo as FormData } from '@/entities/user/api/rdo/user-data.rdo'
+import { usePostUserData } from '@/features/modify-user-settings/api/modify-user-settings'
+import { setUserData } from '@/entities/user/model/slice'
+import { getUserData } from '@/entities/user/api/get-userData'
 
 const validationSchema = yup.object({
 	email: yup.string().email('Enter a valid email').required('Email is required'),
-	password: yup
-		.string()
-		.min(8, 'Password should be of minimum 8 characters length')
-		.required('Password is required'),
+	// password: yup
+	// 	.string()
+	// 	.min(8, 'Password should be of minimum 8 characters length')
+	// 	.required('Password is required'),
 })
 
 const InputTextField = styled(TextField)({
@@ -69,7 +59,23 @@ const InputTextField = styled(TextField)({
 	},
 })
 
+const transformValueToInput = (value: number) => {
+	return value / 10
+}
+
+const transformInputToValue = (inputValue: number) => {
+	return inputValue * 10
+}
+
 const UserSettings: FC = () => {
+	const {
+		data: fetchedUserData,
+		isFetching,
+		isLoading,
+	} = useQuery({
+		queryKey: ['user-data'],
+		queryFn: getUserData,
+	})
 	const [serverFormValues, setServerFormValues] = useState<FormData>({
 		image: null,
 		name: '',
@@ -83,20 +89,21 @@ const UserSettings: FC = () => {
 		bowYParameter: 0,
 		bowBase: 0,
 	})
+	const { mutateAsync, isPending } = usePostUserData()
 
 	const formik = useFormik({
 		initialValues: {
-			image: null,
-			name: '',
-			surname: '',
-			username: '',
-			email: '',
-			phoneNumber: '',
-			birthday: '2001-04-07',
-			archerLevel: '',
-			bowXParameter: 0,
-			bowYParameter: 0,
-			bowBase: 0,
+			image: serverFormValues.image || null,
+			name: serverFormValues.name || '',
+			surname: serverFormValues.surname || '',
+			username: serverFormValues.username || '',
+			email: serverFormValues.email || '',
+			phoneNumber: serverFormValues.phoneNumber || '',
+			birthday: serverFormValues.birthday || '2001-04-07',
+			archerLevel: serverFormValues.archerLevel || '',
+			bowXParameter: serverFormValues.bowXParameter || 0,
+			bowYParameter: serverFormValues.bowXParameter || 0,
+			bowBase: serverFormValues.bowBase || 0,
 		},
 		validationSchema: validationSchema,
 		onSubmit: (values: FormData) => {
@@ -108,25 +115,17 @@ const UserSettings: FC = () => {
 				return acc
 			}, {} as Partial<FormData>)
 
-			console.log(JSON.stringify(changedValues, null, 2))
+			mutateAsync(changedValues).then(() => {
+				setServerFormValues(formik.values)
+				setUserData(formik.values)
+			})
+			console.info(JSON.stringify(changedValues, null, 2))
 		},
 	})
 
-	// useEffect(() => {
-	// 	fetchUserSettingsData().then((userData: FormData) => {
-	// 		setServerFormValues(userData)
-	// 	})
-	// }, [])
-	const transformValueToInput = (value: number) => {
-		return value / 10
-	}
-
-	// Функция для умножения на 10 перед записью в форму
-	const transformInputToValue = (inputValue: number) => {
-		return inputValue * 10
-	}
-
-	console.log(formik.values)
+	useEffect(() => {
+		if (fetchedUserData) setServerFormValues({ ...fetchedUserData })
+	}, [])
 
 	return (
 		<form onSubmit={formik.handleSubmit}>
