@@ -17,24 +17,13 @@ const FooterBar: React.FC = () => {
 			}}
 			value={value}
 			onChange={(event, newValue) => {
+				console.log(event)
 				setValue(newValue)
 			}}>
-			<BottomNavigationAction
-				label='Recents'
-				icon={<AcUnitIcon />}
-			/>
-			<BottomNavigationAction
-				label='Favorites'
-				icon={<BuildIcon />}
-			/>
-			<BottomNavigationAction
-				label='Nearby'
-				icon={<EarbudsBatteryIcon />}
-			/>
-			<BottomNavigationAction
-				label='Nearby'
-				icon={<CellTowerIcon />}
-			/>
+			<BottomNavigationAction label="Recents" icon={<AcUnitIcon />} />
+			<BottomNavigationAction label="Favorites" icon={<BuildIcon />} />
+			<BottomNavigationAction label="Nearby" icon={<EarbudsBatteryIcon />} />
+			<BottomNavigationAction label="Nearby" icon={<CellTowerIcon />} />
 		</BottomNavigation>
 	)
 }

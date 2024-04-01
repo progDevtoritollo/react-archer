@@ -70,8 +70,8 @@ const transformInputToValue = (inputValue: number) => {
 const UserSettings: FC = () => {
 	const {
 		data: fetchedUserData,
-		isFetching,
-		isLoading,
+		// isFetching,
+		// isLoading,
 	} = useQuery({
 		queryKey: ['user-data'],
 		queryFn: getUserData,
@@ -89,7 +89,7 @@ const UserSettings: FC = () => {
 		bowYParameter: 0,
 		bowBase: 0,
 	})
-	const { mutateAsync, isPending } = usePostUserData()
+	const { mutateAsync } = usePostUserData()
 
 	const formik = useFormik({
 		initialValues: {
@@ -122,6 +122,8 @@ const UserSettings: FC = () => {
 			console.info(JSON.stringify(changedValues, null, 2))
 		},
 	})
+
+	console.log(formik.values)
 
 	useEffect(() => {
 		if (fetchedUserData) setServerFormValues({ ...fetchedUserData })

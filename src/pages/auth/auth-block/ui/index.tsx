@@ -9,7 +9,7 @@ import { AppleAuthButton } from '@/shared/ui/buttons/apple-auth-button'
 import { getGoogleURL } from '@/entities/session/api/get-google-auth-url'
 
 const AuthBlock: FC = () => {
-	const { data: url, isPending, isError } = useQuery({ queryKey: ['url'], queryFn: getGoogleURL })
+	const { data: url, isError } = useQuery({ queryKey: ['url'], queryFn: getGoogleURL })
 
 	const handleAuthGoogle = () => {
 		if (url) {

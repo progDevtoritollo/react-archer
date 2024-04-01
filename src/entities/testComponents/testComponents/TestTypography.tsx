@@ -1,4 +1,3 @@
-import React from 'react'
 import { Typography, Button } from '@mui/material'
 
 const TestTournament = () => {
@@ -16,7 +15,10 @@ const TestTournament = () => {
 			<Typography variant="paragraph3">Paragraph 3</Typography>
 			<Typography variant="paragraph4">Paragraph 4</Typography>
 			<Typography variant="body1">Body-1</Typography>
-			<Typography variant="button">Button</Typography>
+			<Button>
+				<Typography variant="button">Button</Typography>
+			</Button>
+
 			<Typography variant="TextField">Text field</Typography>
 			<Typography variant="textSearch">Text search</Typography>
 			<Typography variant="TextInputField">Text input field</Typography>

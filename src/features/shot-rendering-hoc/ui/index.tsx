@@ -6,7 +6,7 @@ import {
 	delLastShot,
 	clearContestList,
 	setTotalScore,
-	setDistance,
+	// setDistance,
 } from '@/entities/contest/model/slice'
 import { Shot, contestTypeEnum } from '@/entities/contest/types'
 
@@ -21,7 +21,11 @@ interface Props {
 }
 
 const WithShots = (Target: React.ComponentType<any>) => {
-	const WithShots: FC<Props> = ({ shots, contestType, postRoundContest }) => {
+	const WithShots: FC<Props> = ({
+		shots,
+		contestType,
+		//  postRoundContest
+	}) => {
 		const dispatch = useDispatch()
 		const [bullet, setBullet] = useState<Shot[]>([])
 
@@ -30,18 +34,19 @@ const WithShots = (Target: React.ComponentType<any>) => {
 		// modal window &&  ContestScore
 		const [isModalOpen, setIsModalOpen] = useState(false)
 		const [ContestScore, setContestScore] = useState(0)
+		console.log(isModalOpen, ContestScore)
 
-		const handleOk = () => {
-			setBullet([])
-			dispatch(clearContestList())
-			setIsModalOpen(false)
-			setContestEnded(false)
-			postRoundContest()
-		}
+		// const handleOk = () => {
+		// 	setBullet([])
+		// 	dispatch(clearContestList())
+		// 	setIsModalOpen(false)
+		// 	setContestEnded(false)
+		// 	postRoundContest()
+		// }
 
-		const handleCancel = () => {
-			setIsModalOpen(false)
-		}
+		// const handleCancel = () => {
+		// 	setIsModalOpen(false)
+		// }
 		// modal window &&  ContestScore
 		const handleButtonClickUndoLast = () => {
 			let bulletWithoutLast = bullet.slice(0, -1)

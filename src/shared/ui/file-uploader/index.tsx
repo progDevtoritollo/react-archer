@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 import { Box, Button, styled, Avatar, Typography } from '@mui/material'
 import toast from 'react-hot-toast'
 import Compressor from 'compressorjs'
-import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 
 interface PhotoUploaderProps {
 	username?: string
@@ -28,7 +27,7 @@ const PhotoUploader: FC<PhotoUploaderProps> = ({ username, value, onChangeFile }
 	const handleFileChanged = (value: File | null) => {
 		if (value) {
 			new Compressor(value, {
-				quality: 0.5,
+				quality: 0.6,
 				maxWidth: 600,
 				maxHeight: 600,
 				success: compressedFile => {
@@ -55,7 +54,7 @@ const PhotoUploader: FC<PhotoUploaderProps> = ({ username, value, onChangeFile }
 			<Avatar
 				alt={username}
 				src={typeof value === 'string' ? value : imageUrl}
-				sx={{ width: 150, height: 150, mb: '10px' }}
+				sx={{ width: 170, height: 170, mb: '10px' }}
 			/>
 			<Button
 				component="label"

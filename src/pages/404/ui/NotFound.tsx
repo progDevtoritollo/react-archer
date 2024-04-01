@@ -1,5 +1,4 @@
 import { Box, Typography } from '@mui/material'
-import React from 'react'
 import { Link } from 'react-router-dom'
 
 import img_404 from '@/app/assets/img/404.png'

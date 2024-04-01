@@ -1,10 +1,9 @@
 // import { useMutation } from 'react-query'
-import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import toast from 'react-hot-toast'
+// import toast from 'react-hot-toast'
 
 import { FullTarget } from '@/shared/ui/targets/full-target'
-import { TripleTarget } from '@/shared/ui/targets/triple-target'
+// import { TripleTarget } from '@/shared/ui/targets/triple-target'
 
 import WithShots from '@/features/shot-rendering-hoc/ui'
 import RoundTable from '@/widgets/round-table/ui'
@@ -15,7 +14,7 @@ import RoundTable from '@/widgets/round-table/ui'
 import './index.scss'
 import { selectContest } from '@/entities/contest/model/selectors'
 
-const TripleTargetShotWrapper = WithShots(TripleTarget)
+// const TripleTargetShotWrapper = WithShots(TripleTarget)
 const FullTargetShotWrapper = WithShots(FullTarget)
 
 const RoundPage: React.FC = () => {

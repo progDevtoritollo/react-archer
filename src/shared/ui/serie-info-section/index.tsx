@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+// import React, { FC } from 'react'
 import { Typography } from '@mui/material'
 
 import './index.scss'
@@ -10,7 +10,7 @@ interface SerieInfoSectionProps {
 const SerieInfoSection = ({ InfoNumber }: SerieInfoSectionProps) => {
 	return (
 		<div className="box">
-			<Typography variant="input_regular">{Math.round(InfoNumber)}</Typography>
+			<Typography variant="TextField">{Math.round(InfoNumber)}</Typography>
 		</div>
 	)
 }

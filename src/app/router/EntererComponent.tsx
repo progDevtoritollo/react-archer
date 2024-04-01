@@ -7,7 +7,7 @@ import AuthRouter from '@/app/router/AuthRouter'
 import AppRouter from '@/app/router/AppRouter'
 
 import { useSession } from '@/entities/session/hooks/use-session'
-import { SetLoggedIn } from '@/entities/session/model/slice'
+import { setLoggedIn } from '@/entities/session/model/slice'
 
 import { getAuthCheck } from '@/entities/session/api/get-is-auth'
 
@@ -23,10 +23,10 @@ const EntererComponent: React.FC = () => {
 
 	useEffect(() => {
 		if (isSuccess) {
-			dispatch(SetLoggedIn(true))
+			dispatch(setLoggedIn(true))
 		}
 		if (isError) {
-			dispatch(SetLoggedIn(false))
+			dispatch(setLoggedIn(false))
 		}
 	}, [isSuccess, isError, dispatch])
 

@@ -1,6 +1,5 @@
 // import { selectContestData } from 'entities/contest/model/selectors';
 import { FC } from 'react'
-import { useSelector } from 'react-redux'
 
 import Serie from '@/entities/serie/serie-row/ui'
 
