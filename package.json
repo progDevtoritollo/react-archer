@@ -32,6 +32,7 @@
 		"yup": "^1.4.0"
 	},
 	"devDependencies": {
+		"@types/compose-function": "^0.0.33",
 		"@types/lodash": "^4.17.0",
 		"@types/node": "^20.11.30",
 		"@types/react": "^18.2.15",
