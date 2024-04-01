@@ -1,16 +1,16 @@
 version: '3.7'
 
 services:
-  #   frontend:
-  #     image: 66567575/uf767fg767yyu:latest
-  # #    pull_policy: always
-  #     restart: on-failure
-  #     ports:
-  #       - "80:80"
-  #     depends_on:
-  #       - backend
-  #     links:
-  #       - backend
+  frontend:
+    image: 66567575/clvsdffgg-ar:latest
+    # pull_policy: always
+    restart: on-failure
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+    links:
+      - backend
 
   backend:
     image: 810670285/ordradmither:latest
