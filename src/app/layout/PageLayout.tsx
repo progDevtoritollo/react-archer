@@ -1,8 +1,8 @@
 import { FC, Fragment } from 'react'
 import { Outlet } from 'react-router-dom'
-import { Grid, useMediaQuery, Box, Container } from '@mui/material'
+import { Grid, useMediaQuery, Box, Container, Paper } from '@mui/material'
 
-import SideBar from '@/features/SideBar'
+import SideBar from '@/widgets/navigation/sidebar'
 import RightSidebar from '@/features/RightSidebar'
 import FooterBar from '@/features/FooterBar'
 
@@ -10,7 +10,7 @@ const PageLayout: FC = () => {
 	//? how use style from materialUI in Component
 	//? to center PageLayout and give it max-width for adaptive
 
-	const isMobile = useMediaQuery('(max-width:450px)')
+	const isMobile = useMediaQuery('(max-width:600px)')
 	const isTablet = useMediaQuery('(min-width:800px)')
 	//? change to brakePoints from material
 
@@ -31,26 +31,25 @@ const PageLayout: FC = () => {
 	} else {
 		return (
 			<Fragment>
-				<Box sx={{ display: 'flex', justifyContent: 'center' }}>
-					<Container
-						component="main"
-						maxWidth="xl"
-						sx={{ textAlign: 'center', mx: 1, display: 'flex', justifyContent: 'center' }}>
-						<Grid container spacing={5} justifyContent="center">
-							<Grid item md={2}>
-								<SideBar />
-							</Grid>
-							<Grid item md={8}>
-								<Outlet />
-							</Grid>
-							{isTablet ? (
-								<Grid item md={2}>
-									<RightSidebar />
-								</Grid>
-							) : null}
+				<Grid container spacing={2}>
+					<Grid item xs={12} sm={2} md={2.5} lg={2} xl={1.5}>
+						<Paper style={{ height: '100vh' }}>
+							<SideBar />
+						</Paper>
+					</Grid>
+					<Grid item xs={12} sm={8} md={7} lg={7} xl={7.5}>
+						<Box sx={{ height: '100%' }}>
+							<Outlet />
+						</Box>
+					</Grid>
+					{isTablet ? (
+						<Grid item xs={12} sm={2} md={2.5} lg={3} xl={3}>
+							<Paper style={{ height: '100%' }}>
+								<RightSidebar />
+							</Paper>
 						</Grid>
-					</Container>
-				</Box>
+					) : null}
+				</Grid>
 			</Fragment>
 		)
 	}

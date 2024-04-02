@@ -21,6 +21,9 @@ const AppRouter: FC = () => {
 			<Route path="/user/" element={<PageLayout />}>
 				<Route path="settings" element={<UserSettings />} />
 				<Route path="notifications" element={<h5>Notifications</h5>} />
+				<Route path="friends" element={<h5>Friends</h5>} />
+				<Route path="statistic" element={<h5>Statistic</h5>} />
+				<Route path="activity" element={<h5>Activity</h5>} />
 			</Route>
 			<Route path="/auth/">
 				<Route path="signin" element={<PublicRoute />} />

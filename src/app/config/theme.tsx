@@ -138,7 +138,7 @@ const theme = createTheme({
 		},
 		paragraph1: {
 			fontFamily: 'Inter',
-			fontSize: '18px',
+			fontSize: '17px',
 			fontWeight: '500',
 		},
 		paragraph2: {
