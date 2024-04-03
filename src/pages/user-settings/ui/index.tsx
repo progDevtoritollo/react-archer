@@ -3,16 +3,21 @@ import { styled } from '@mui/material/styles'
 import { TextField, Button, Select, FormControl, InputLabel, Box, Typography } from '@mui/material'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
+// import toast from 'react-hot-toast'
 import isEqual from 'lodash/isEqual'
 import { MuiTelInput } from 'mui-tel-input'
 import { useQuery } from '@tanstack/react-query'
 
 import DatePicker from '@/shared/ui/date-picker'
 import PhotoUploader from '@/shared/ui/file-uploader'
-import { userDataRdo as FormData } from '@/entities/user/api/rdo/user-data.rdo'
+
+//! import { userDataDto as FormData } from '@/entities/user/api/dto/user-data.dto'
+//! Uncaught SyntaxError: The requested module '/src/entities/user/api/dto/user-data.dto.ts' does not provide an export named 'userDataDto' (at index.tsx:13:10)
+
 import { usePostUserData } from '@/features/modify-user-settings/api/modify-user-settings'
 import { setUserData } from '@/entities/user/model/slice'
 import { getUserData } from '@/entities/user/api/get-userData'
+import { usePostUserAvatar } from '@/features/modify-user-settings/api/modify-user-avatar'
 
 const validationSchema = yup.object({
 	email: yup.string().email('Enter a valid email').required('Email is required'),
@@ -62,17 +67,27 @@ const InputTextField = styled(TextField)({
 const transformValueToInput = (value: number) => {
 	return value / 10
 }
-
 const transformInputToValue = (inputValue: number) => {
 	return inputValue * 10
 }
 
+export type FormData = {
+	[key: string]: File | null | string | number
+	image: File | null | string
+	name: string
+	surname: string
+	username: string
+	email: string
+	phoneNumber: string
+	archerLevel: string
+	birthday: string
+	bowXParameter: number
+	bowYParameter: number
+	bowBase: number
+}
+
 const UserSettings: FC = () => {
-	const {
-		data: fetchedUserData,
-		// isFetching,
-		// isLoading,
-	} = useQuery({
+	const { data: fetchedUserData } = useQuery({
 		queryKey: ['user-data'],
 		queryFn: getUserData,
 	})
@@ -89,22 +104,37 @@ const UserSettings: FC = () => {
 		bowYParameter: 0,
 		bowBase: 0,
 	})
-	const { mutateAsync } = usePostUserData()
+	const { mutateAsync: mutateUserDataAsync } = usePostUserData()
+	const { mutateAsync: mutateUserAvatarAsync } = usePostUserAvatar()
+
+	const handleUploadAvatar = async () => {
+		let image = formik.values.image
+		if (image) {
+			if (image instanceof Blob) {
+				const avatar = new FormData()
+				avatar.append('avatar', image)
+				mutateUserAvatarAsync(avatar)
+			}
+		} else {
+			console.error('No image selected')
+		}
+	}
 
 	const formik = useFormik({
 		initialValues: {
-			image: serverFormValues.image || null,
-			name: serverFormValues.name || '',
-			surname: serverFormValues.surname || '',
-			username: serverFormValues.username || '',
-			email: serverFormValues.email || '',
-			phoneNumber: serverFormValues.phoneNumber || '',
-			birthday: serverFormValues.birthday || '2001-04-07',
-			archerLevel: serverFormValues.archerLevel || '',
-			bowXParameter: serverFormValues.bowXParameter || 0,
-			bowYParameter: serverFormValues.bowXParameter || 0,
-			bowBase: serverFormValues.bowBase || 0,
+			image: serverFormValues.image,
+			name: serverFormValues.name,
+			surname: serverFormValues.surname,
+			username: serverFormValues.username,
+			email: serverFormValues.email,
+			phoneNumber: serverFormValues.phoneNumber,
+			birthday: serverFormValues.birthday,
+			archerLevel: serverFormValues.archerLevel,
+			bowXParameter: serverFormValues.bowXParameter,
+			bowYParameter: serverFormValues.bowXParameter,
+			bowBase: serverFormValues.bowBase,
 		},
+		enableReinitialize: true,
 		validationSchema: validationSchema,
 		onSubmit: (values: FormData) => {
 			const changedFields = Object.keys(values).filter(
@@ -115,15 +145,13 @@ const UserSettings: FC = () => {
 				return acc
 			}, {} as Partial<FormData>)
 
-			mutateAsync(changedValues).then(() => {
+			handleUploadAvatar()
+			mutateUserDataAsync(changedValues).then(() => {
 				setServerFormValues(formik.values)
 				setUserData(formik.values)
 			})
-			console.info(JSON.stringify(changedValues, null, 2))
 		},
 	})
-
-	console.log(formik.values)
 
 	useEffect(() => {
 		if (fetchedUserData) setServerFormValues({ ...fetchedUserData })

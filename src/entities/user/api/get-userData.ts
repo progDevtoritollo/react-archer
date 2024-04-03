@@ -1,7 +1,7 @@
 import { apiClient } from '@/shared/api/base'
-import { userDataRdo } from './rdo/user-data.rdo'
+import { userDataDto } from './dto/user-data.dto'
 
 export const getUserData = async () => {
-	const res = await apiClient.get<userDataRdo>('/api/user/settings')
+	const res = await apiClient.get<userDataDto>('/api/user/settings')
 	return res
 }

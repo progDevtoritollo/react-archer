@@ -60,6 +60,21 @@ export class ApiClient {
 			throw new Error('Error posting data')
 		}
 	}
+
+	public async postFile<T = unknown>(endpoint: string, body: T): Promise<T> {
+		try {
+			const response = await axios.post<T>(`${this.baseUrl}${endpoint}`, body, {
+				withCredentials: true,
+				headers: {
+					'Content-Type': 'multipart/form-data',
+				},
+			})
+
+			return this.handleResponse<T>(response)
+		} catch (error) {
+			throw new Error('Error posting data')
+		}
+	}
 }
 
 export const apiClient = new ApiClient(API_URL)
