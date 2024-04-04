@@ -142,6 +142,9 @@ const UserSettings: FC = () => {
 			)
 			const changedValues = changedFields.reduce((acc, key) => {
 				acc[key as keyof FormData] = values[key as keyof FormData]
+				if (key === 'image') {
+					acc[key as keyof FormData] = undefined
+				}
 				return acc
 			}, {} as Partial<FormData>)
 
