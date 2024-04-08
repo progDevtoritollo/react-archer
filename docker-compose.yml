@@ -6,34 +6,43 @@ services:
     # pull_policy: always
     restart: on-failure
     ports:
-      - '80:80'
+      - "80:80"
     depends_on:
       - backend
     links:
       - backend
+    volumes:
+      - avatars:/media/public/images
 
   backend:
     image: 810670285/ordradmither:latest
     pull_policy: always
     restart: on-failure
     ports:
-      - '8080:8080'
+      - "8080:8080"
     depends_on:
       - postgres
     links:
       - postgres
     environment:
-      spring.datasource.url: 'jdbc:postgresql://postgres:5432/archer'
+      spring.datasource.url: "jdbc:postgresql://postgres:5432/archer"
+    volumes:
+      - avatars:/avatars
 
   postgres:
-    image: 'postgres'
+    image: "postgres"
     pull_policy: always
     restart: on-failure
     ports:
-      - '5432:5432'
+      - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=archer
     volumes:
-      - ./db-data:/var/lib/postgresql/data
+      - archer-db-data:/var/lib/postgresql/data
+
+
+volumes:
+  archer-db-data:
+  avatars:
