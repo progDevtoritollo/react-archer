@@ -1,4 +1,5 @@
 export interface userData {
+	image: null | string | File
 	name: string
 	surname: string
 	username: string

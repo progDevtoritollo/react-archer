@@ -1,7 +1,8 @@
 import { useAppSelector } from '@/app/store/hooks/redux-hook'
 
-export function useSession() {
+export function useUser() {
 	const {
+		image,
 		name,
 		surname,
 		username,
@@ -15,6 +16,7 @@ export function useSession() {
 	} = useAppSelector(state => state.user)
 
 	return {
+		image,
 		name,
 		surname,
 		username,

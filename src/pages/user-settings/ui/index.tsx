@@ -7,6 +7,7 @@ import * as yup from 'yup'
 import isEqual from 'lodash/isEqual'
 import { MuiTelInput } from 'mui-tel-input'
 import { useQuery } from '@tanstack/react-query'
+import { useDispatch } from 'react-redux'
 
 import DatePicker from '@/shared/ui/date-picker'
 import PhotoUploader from '@/shared/ui/file-uploader'
@@ -17,7 +18,10 @@ import PhotoUploader from '@/shared/ui/file-uploader'
 import { usePostUserData } from '@/features/modify-user-settings/api/modify-user-settings'
 import { setUserData } from '@/entities/user/model/slice'
 import { getUserData } from '@/entities/user/api/get-userData'
+import { useUser } from '@/entities/user/hooks/use-user'
+
 import { usePostUserAvatar } from '@/features/modify-user-settings/api/modify-user-avatar'
+import PageLoader from '@/features/PageLoader'
 
 const validationSchema = yup.object({
 	email: yup.string().email('Enter a valid email').required('Email is required'),
@@ -87,10 +91,26 @@ export type FormData = {
 }
 
 const UserSettings: FC = () => {
-	const { data: fetchedUserData } = useQuery({
+	const dispatch = useDispatch()
+	const userData = useUser()
+
+	const {
+		data: fetchedUserData,
+		refetch,
+		isLoading,
+	} = useQuery({
 		queryKey: ['user-data'],
 		queryFn: getUserData,
 	})
+
+	useEffect(() => {
+		if (fetchedUserData) {
+			refetch()
+			setServerFormValues({ ...fetchedUserData })
+			dispatch(setUserData({ ...fetchedUserData }))
+		}
+	}, [fetchedUserData])
+
 	const [serverFormValues, setServerFormValues] = useState<FormData>({
 		image: null,
 		name: '',
@@ -104,6 +124,7 @@ const UserSettings: FC = () => {
 		bowYParameter: 0,
 		bowBase: 0,
 	})
+
 	const { mutateAsync: mutateUserDataAsync } = usePostUserData()
 	const { mutateAsync: mutateUserAvatarAsync } = usePostUserAvatar()
 
@@ -119,20 +140,19 @@ const UserSettings: FC = () => {
 			console.error('No image selected')
 		}
 	}
-
 	const formik = useFormik({
 		initialValues: {
-			image: serverFormValues.image,
-			name: serverFormValues.name,
-			surname: serverFormValues.surname,
-			username: serverFormValues.username,
-			email: serverFormValues.email,
-			phoneNumber: serverFormValues.phoneNumber,
-			birthday: serverFormValues.birthday,
-			archerLevel: serverFormValues.archerLevel,
-			bowXParameter: serverFormValues.bowXParameter,
-			bowYParameter: serverFormValues.bowXParameter,
-			bowBase: serverFormValues.bowBase,
+			image: userData.image,
+			name: userData.name,
+			surname: userData.surname,
+			username: userData.username,
+			email: userData.email,
+			phoneNumber: userData.phoneNumber,
+			birthday: userData.birthday,
+			archerLevel: userData.archerLevel,
+			bowXParameter: userData.bowXParameter,
+			bowYParameter: userData.bowYParameter,
+			bowBase: userData.bowBase,
 		},
 		enableReinitialize: true,
 		validationSchema: validationSchema,
@@ -151,15 +171,18 @@ const UserSettings: FC = () => {
 			handleUploadAvatar()
 			mutateUserDataAsync(changedValues).then(() => {
 				setServerFormValues(formik.values)
-				setUserData(formik.values)
+				dispatch(setUserData(formik.values))
 			})
 		},
 	})
 
-	useEffect(() => {
-		if (fetchedUserData) setServerFormValues({ ...fetchedUserData })
-	}, [])
-
+	if (isLoading) {
+		return (
+			<Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<PageLoader />
+			</Box>
+		)
+	}
 	return (
 		<form onSubmit={formik.handleSubmit}>
 			<Box sx={{ m: 2, mt: '25px', ml: '30px' }}>

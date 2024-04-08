@@ -2,13 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { userData } from '../types'
 
-const initialState = {
+const initialState: userData = {
+	image: null,
 	name: '',
 	surname: '',
 	username: '',
 	email: '',
 	phoneNumber: '',
-	birthday: '',
+	birthday: '2001-04-07',
 	archerLevel: '',
 	bowXParameter: 0,
 	bowYParameter: 0,
@@ -20,6 +21,7 @@ export const appSlice = createSlice({
 	initialState: initialState,
 	reducers: {
 		setUserData: (state, action: PayloadAction<userData>) => {
+			state.image = action.payload.image
 			state.name = action.payload.name
 			state.surname = action.payload.surname
 			state.username = action.payload.username

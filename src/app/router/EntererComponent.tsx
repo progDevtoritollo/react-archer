@@ -13,7 +13,6 @@ import { getAuthCheck } from '@/entities/session/api/get-is-auth'
 
 const EntererComponent: React.FC = () => {
 	const { isLoggedIn } = useSession()
-
 	const dispatch = useDispatch()
 
 	const { isError, isPending, isSuccess } = useQuery({
