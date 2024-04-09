@@ -3,9 +3,10 @@ import { Box, Button, styled, Avatar, Typography } from '@mui/material'
 import toast from 'react-hot-toast'
 import Compressor from 'compressorjs'
 
+import { URL } from '@/shared/api/config'
 interface PhotoUploaderProps {
 	username?: string
-	value?: File | null | string
+	image?: File | null | string
 	onChangeFile: (file: File | null) => void
 }
 
@@ -21,12 +22,12 @@ const VisuallyHiddenInput = styled('input')({
 	width: 1,
 })
 
-const PhotoUploader: FC<PhotoUploaderProps> = ({ username, value, onChangeFile }) => {
+const PhotoUploader: FC<PhotoUploaderProps> = ({ username, image, onChangeFile }) => {
 	const [imageUrl, setImageUrl] = React.useState<string | undefined>(undefined)
 
-	const handleFileChanged = (value: File | null) => {
-		if (value) {
-			new Compressor(value, {
+	const handleFileChanged = (image: File | null) => {
+		if (image) {
+			new Compressor(image, {
 				quality: 0.6,
 				maxWidth: 600,
 				maxHeight: 600,
@@ -38,7 +39,7 @@ const PhotoUploader: FC<PhotoUploaderProps> = ({ username, value, onChangeFile }
 						}
 					}
 					reader.readAsDataURL(compressedFile)
-					onChangeFile(new File([compressedFile], value.name, { type: value.type }))
+					onChangeFile(new File([compressedFile], image.name, { type: image.type }))
 				},
 				error: err => {
 					toast.error(err.message)
@@ -53,7 +54,7 @@ const PhotoUploader: FC<PhotoUploaderProps> = ({ username, value, onChangeFile }
 		<Box sx={{ display: 'inline-flex', flexDirection: 'column', margin: '10px' }}>
 			<Avatar
 				alt={username}
-				src={typeof value === 'string' ? value : imageUrl}
+				src={typeof image === 'string' && image !== '' ? `${URL}/public/images/${image}` : imageUrl}
 				sx={{ width: 170, height: 170, mb: '10px' }}
 			/>
 			<Button

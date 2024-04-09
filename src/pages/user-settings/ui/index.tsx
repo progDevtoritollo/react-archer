@@ -192,7 +192,7 @@ const UserSettings: FC = () => {
 				<Box sx={{ display: 'flex', flexDirection: 'row', mt: '25px' }}>
 					<Box sx={{ display: 'flex', margin: '10px' }}>
 						<PhotoUploader
-							value={formik.values.image}
+							image={formik.values.image}
 							onChangeFile={file => {
 								formik.setFieldValue('image', file)
 							}}

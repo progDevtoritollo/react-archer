@@ -5,6 +5,7 @@
 // 	? 'https://9444-193-110-22-126.ngrok-free.app/api'
 // 	: 'https://archer.com/api'
 
+const URL: string = 'http://localhost'
 const API_URL: string = 'http://localhost:8080'
 
-export default API_URL
+export { API_URL, URL }

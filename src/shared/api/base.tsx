@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 
-import API_URL from '@/shared/api/config'
+import { API_URL } from '@/shared/api/config'
 
 export class ApiClient {
 	private baseUrl: string
