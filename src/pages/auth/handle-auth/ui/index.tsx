@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import PageLoader from '@/features/PageLoader'
+import PageLoader from '@/widgets/PageLoader'
 import { setLoggedIn } from '@/entities/session/model/slice'
 
 import { getToken } from '@/entities/session/api/get-token'

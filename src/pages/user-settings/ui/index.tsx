@@ -21,7 +21,7 @@ import { getUserData } from '@/entities/user/api/get-userData'
 import { useUser } from '@/entities/user/hooks/use-user'
 
 import { usePostUserAvatar } from '@/features/modify-user-settings/api/modify-user-avatar'
-import PageLoader from '@/features/PageLoader'
+import PageLoader from '@/widgets/PageLoader'
 
 const validationSchema = yup.object({
 	email: yup.string().email('Enter a valid email').required('Email is required'),

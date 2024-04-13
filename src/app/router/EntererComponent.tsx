@@ -2,7 +2,7 @@ import { Suspense, Fragment, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useQuery } from '@tanstack/react-query'
 
-import PageLoader from '@/features/PageLoader'
+import PageLoader from '@/widgets/PageLoader'
 import AuthRouter from '@/app/router/AuthRouter'
 import AppRouter from '@/app/router/AppRouter'
 

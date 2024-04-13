@@ -4,7 +4,7 @@ import { Suspense, Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import { Box } from '@mui/material'
 
-import PageLoader from '@/features/PageLoader'
+import PageLoader from '@/widgets/PageLoader'
 import AuthBlock from './auth-block/ui'
 import type { RootState } from '@/app/store'
 

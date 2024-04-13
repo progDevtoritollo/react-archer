@@ -3,8 +3,8 @@ import { Outlet } from 'react-router-dom'
 import { Grid, useMediaQuery, Box, Container, Paper } from '@mui/material'
 
 import SideBar from '@/widgets/navigation/sidebar'
-import RightSidebar from '@/features/RightSidebar'
-import FooterBar from '@/features/FooterBar'
+import RightSidebar from '@/widgets/RightSidebar'
+import FooterBar from '@/widgets/navigation/FooterBar'
 
 const PageLayout: FC = () => {
 	//? how use style from materialUI in Component
