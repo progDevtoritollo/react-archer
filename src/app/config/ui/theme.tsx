@@ -1,18 +1,12 @@
 import { createTheme } from '@mui/material/styles'
+import customColors from './palette'
 
-//colors
 declare module '@mui/material/styles' {
 	interface Palette {
-		text_dark: Palette['primary']
+		customColors: CustomPalette
 	}
 	interface PaletteOptions {
-		text_dark?: PaletteOptions['primary']
-	}
-}
-
-declare module '@mui/material/Typography' {
-	interface TypographyPropsColorOverrides {
-		text_dark: true
+		customColors?: CustomPaletteOptions
 	}
 }
 
@@ -85,28 +79,15 @@ declare module '@mui/material/Typography' {
 
 const theme = createTheme({
 	palette: {
+		customColors,
 		background: {
-			default: '#ffffff',
-			// paper: '#ccc',
+			default: '#FFFCFC',
 		},
-		// text: {
-		// 	primary: '#000',
-		// 	secondary: '#666',
-		// },
-		text_dark: {
-			main: '#161616',
-		},
-		// action: {
-		// 	hover: '#eee',
-		// 	disabled: '#999',
-		// },
-		// divider: '#aaa',
-		common: {
-			black: '#000',
-			white: '#fff',
-		},
-		// error: {
-		// 	main: red.A400,
+		divider: '#F0F0F0',
+
+		// common: {
+		// 	black: '#000',
+		// 	white: '#fff',
 		// },
 	},
 	typography: {
@@ -191,7 +172,7 @@ const theme = createTheme({
 			fontWeight: '600',
 			fontSize: '20px',
 			textDecoration: 'underline',
-			color: '#A8A6B3',
+			// color: '#A8A6B3',
 		},
 		textSearch: {
 			fontFamily: 'Inter',

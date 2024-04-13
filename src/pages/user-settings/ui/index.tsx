@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from 'react'
-import { styled } from '@mui/material/styles'
+import { styled, useTheme } from '@mui/material/styles'
 import { TextField, Button, Select, FormControl, InputLabel, Box, Typography } from '@mui/material'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
@@ -91,6 +91,7 @@ export type FormData = {
 }
 
 const UserSettings: FC = () => {
+	const theme = useTheme()
 	const dispatch = useDispatch()
 	const userData = useUser()
 
@@ -186,7 +187,10 @@ const UserSettings: FC = () => {
 	return (
 		<form onSubmit={formik.handleSubmit}>
 			<Box sx={{ m: 2, mt: '25px', ml: '30px' }}>
-				<Typography sx={{ textAlign: 'left' }} variant="h2">
+				<Typography
+					sx={{ textAlign: 'left' }}
+					variant="h2"
+					color={theme.palette.customColors.text_color?.headline}>
 					Personal Information
 				</Typography>
 				<Box sx={{ display: 'flex', flexDirection: 'row', mt: '25px' }}>
@@ -307,7 +311,10 @@ const UserSettings: FC = () => {
 					</Box>
 				</Box>
 
-				<Typography sx={{ mt: '30px', textAlign: 'left' }} variant="h2">
+				<Typography
+					sx={{ mt: '30px', textAlign: 'left' }}
+					variant="h2"
+					color={theme.palette.customColors.text_color?.headline}>
 					Bow Parameters
 				</Typography>
 				<Box sx={{ mt: '20px', display: 'flex', flexDirection: 'column', width: '150px' }}>

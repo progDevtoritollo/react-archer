@@ -1,9 +1,11 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, useTheme } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 import img_404 from '@/app/assets/img/404.png'
 
 const NotFound = () => {
+	const them = useTheme()
+
 	return (
 		<Box>
 			<Box
@@ -15,12 +17,17 @@ const NotFound = () => {
 				alt="Image page 404."
 				src={img_404}
 			/>
-			<Typography sx={{ mt: '20px', mb: '10px' }} variant="CapsLockHighlight" component="div">
+			<Typography
+				sx={{ mt: '20px', mb: '10px', color: them.palette.customColors.text_color?.headline }}
+				variant="CapsLockHighlight"
+				component="div">
 				404 NOT FOUND PAGE
 			</Typography>
-
 			<Link to="/">
-				<Typography variant="UnderlinedText" component="div">
+				<Typography
+					variant="UnderlinedText"
+					component="div"
+					sx={{ color: them.palette.customColors.text_color?.underlined }}>
 					Back to main page
 				</Typography>
 			</Link>

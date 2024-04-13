@@ -1,6 +1,6 @@
 import { ThemeProvider, CssBaseline } from '@mui/material'
 
-import theme from '@/app/config/theme'
+import theme from '@/app/config/ui/theme'
 
 console.log(theme, 'them MaterialUI')
 
