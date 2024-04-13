@@ -10,10 +10,8 @@ const Logout: FC = () => {
 	// }
 	useEffect(() => {
 		// asyncLogout();
-		window.sessionStorage.removeItem('isLoggedIn') //? change to sessionStorage
-		window.localStorage.removeItem('auth') //? change to sessionStorage
 		navigate('/auth/signin')
-		// cookie.remove('auth_JWT') useCookie  how del cookie with flag httpOnly
+		//! cookie.remove('auth_JWT') useCookie  how del cookie with flag httpOnly
 	}, [])
 
 	return <PageLoader />
