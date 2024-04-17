@@ -27,7 +27,7 @@ const EntererComponent: React.FC = () => {
 		if (isError) {
 			dispatch(setLoggedIn(false))
 		}
-	}, [isSuccess, isError, dispatch])
+	}, [isSuccess, isError])
 
 	if (isPending) {
 		return <PageLoader />
