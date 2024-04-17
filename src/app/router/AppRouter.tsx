@@ -16,7 +16,6 @@ const AppRouter: FC = () => {
 				<Route index element={<div>Home</div>} />
 				<Route path="/test" element={<TestPage />} />
 				<Route path="/dashboard" element={<div>Dashboard</div>} />
-				<Route path="/quick-round" element={<RoundPage />} />
 			</Route>
 			<Route path="/user/" element={<PageLayout />}>
 				<Route path="settings" element={<UserSettings />} />
@@ -24,6 +23,11 @@ const AppRouter: FC = () => {
 				<Route path="friends" element={<h5>Friends</h5>} />
 				<Route path="statistic" element={<h5>Statistic</h5>} />
 				<Route path="activity" element={<h5>Activity</h5>} />
+			</Route>
+			<Route path="/create/" element={<PageLayout />}>
+				<Route path="quick-round" element={<RoundPage />} />
+				<Route path="duel" element={<div>Create Duel</div>} />
+				<Route path="competition" element={<div>Competition</div>} />
 			</Route>
 			<Route path="/auth/">
 				<Route path="signin" element={<PublicRoute />} />

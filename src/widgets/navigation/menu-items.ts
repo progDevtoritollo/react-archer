@@ -94,7 +94,7 @@ export const menuItems: Record<string, MenuItem> = {
 			{
 				icon: AssistantPhotoOutlinedIcon,
 				label: 'Quick round',
-				link: '/menu1',
+				link: '/create/quick-round',
 			},
 			{
 				icon: StarBorderOutlinedIcon,

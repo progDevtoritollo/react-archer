@@ -1,12 +1,12 @@
 import { useState, FC } from 'react'
 import { useDispatch } from 'react-redux'
-
+import { Modal, Box, Backdrop } from '@mui/material'
 import {
 	addShot,
 	delLastShot,
 	clearContestList,
 	setTotalScore,
-	// setDistance,
+	setDistance,
 } from '@/entities/contest/model/slice'
 import { Shot, contestTypeEnum } from '@/entities/contest/types'
 
@@ -21,11 +21,7 @@ interface Props {
 }
 
 const WithShots = (Target: React.ComponentType<any>) => {
-	const WithShots: FC<Props> = ({
-		shots,
-		contestType,
-		//  postRoundContest
-	}) => {
+	const WithShots: FC<Props> = ({ shots, contestType, postRoundContest }) => {
 		const dispatch = useDispatch()
 		const [bullet, setBullet] = useState<Shot[]>([])
 
@@ -34,20 +30,15 @@ const WithShots = (Target: React.ComponentType<any>) => {
 		// modal window &&  ContestScore
 		const [isModalOpen, setIsModalOpen] = useState(false)
 		const [ContestScore, setContestScore] = useState(0)
-		console.log(isModalOpen, ContestScore)
 
-		// const handleOk = () => {
-		// 	setBullet([])
-		// 	dispatch(clearContestList())
-		// 	setIsModalOpen(false)
-		// 	setContestEnded(false)
-		// 	postRoundContest()
-		// }
-
-		// const handleCancel = () => {
-		// 	setIsModalOpen(false)
-		// }
-		// modal window &&  ContestScore
+		const handleOpen = () => setIsModalOpen(true)
+		const handleClose = () => {
+			setBullet([])
+			dispatch(clearContestList())
+			setIsModalOpen(false)
+			setContestEnded(false)
+			postRoundContest()
+		}
 		const handleButtonClickUndoLast = () => {
 			let bulletWithoutLast = bullet.slice(0, -1)
 
@@ -61,7 +52,7 @@ const WithShots = (Target: React.ComponentType<any>) => {
 		}
 
 		const handleButtonClickFinishContest = () => {
-			// culc ContestScore
+			// calculate ContestScore
 			let ShotsSum = 0
 			// for (let i = 0; i < shots.length; i++) {
 			// 	ShotsSum += shots[i].score
@@ -83,10 +74,7 @@ const WithShots = (Target: React.ComponentType<any>) => {
 			let contestLengthOfShots = contestType == contestTypeEnum.ROUND ? 30 : 5
 
 			if (shots.length >= contestLengthOfShots) {
-				setContestEnded(true)
-				alert('you already set all shots st this contest type')
-
-				return 0
+				handleOpen()
 			}
 
 			const newShot = {
@@ -99,31 +87,47 @@ const WithShots = (Target: React.ComponentType<any>) => {
 			dispatch(addShot(newShot))
 		}
 
-		// const handleSelectionDistance = event => {
-		// 	setDistance(event.target.value)
-		// }
+		const handleSelectionDistance = (event: React.ChangeEvent<HTMLSelectElement>) => {
+			setDistance(+event.target.value)
+		}
 
 		return (
 			<div className="target">
-				{/* <Modal
-					title='Finished contest task'
+				<Modal
 					open={isModalOpen}
-					onOk={handleOk}
-					onCancel={handleCancel}>
-					<p>Contest score: {ContestScore}</p>
-					<p>distance add to request by custom selection</p>
-					<label for='cars'>Choose a distance:</label>
-					<select
-						onChange={handleSelectionDistance}
-						name='distance'
-						id='distance'>
-						<option value='18'>18</option>
-						<option value='60'>60</option>
-						<option value='70'>70</option>
-						<option value='90'>90</option>
-					</select>
-					<p>Some contents info...</p>
-				</Modal> */}
+					onClose={handleClose}
+					slots={{ backdrop: Backdrop }}
+					slotProps={{
+						backdrop: {
+							timeout: 500,
+						},
+					}}
+					aria-labelledby="modal-modal-title"
+					aria-describedby="modal-modal-description">
+					<Box
+						sx={{
+							position: 'absolute' as 'absolute',
+							top: '50%',
+							left: '50%',
+							transform: 'translate(-50%, -50%)',
+							width: 400,
+							bgcolor: 'background.paper',
+							border: '2px solid #000',
+							boxShadow: 24,
+							p: 4,
+						}}>
+						<p>Contest score: {ContestScore}</p>
+						<p>distance add to request by custom selection</p>
+						<label>Choose a distance:</label>
+						<select onChange={handleSelectionDistance} name="distance" id="distance">
+							<option value="18">18</option>
+							<option value="60">60</option>
+							<option value="70">70</option>
+							<option value="90">90</option>
+						</select>
+						<p>Some contents info...</p>
+					</Box>
+				</Modal>
 				<div className="target-with-shots-hoc" style={{ position: 'relative' }}>
 					<Target shotEvent={shotHandleClick} />
 					{bullet.map(value => {
