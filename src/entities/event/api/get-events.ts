@@ -8,19 +8,19 @@ const calculateEventPage = (totalCount: number, limit: number) => Math.floor(tot
 
 export const getEvents = async (
 	page: number,
-	limit: number,
-	owner: string,
+	limit: number, // size items on page - limit items on page
+	owner: string, // del
 	activityType: string,
 	sortBy: string,
 ): Promise<EventWithPagination> => {
-	const skip = (page - 1) * limit
+	const skip = (page - 1) * limit // del
 	const query: EventQuery = { skip, limit, owner, activityType, sortBy }
 	const result = await apiClient.get<EventWithPaginationDto>('/api/get/events/', query)
 	return {
 		events: result.events.map(post => mapEvent(post)),
-		limit: result.limit,
-		skip: result.skip,
-		total: result.total,
+		limit: result.limit, // del
+		skip: result.skip, // del
+		total: result.total, // del
 		totalPages: calculateEventPage(result.total, limit),
 	}
 }

@@ -33,36 +33,6 @@ type SubMenuItem = {
 type menuItems = {}
 
 export const menuItems: Record<string, MenuItem> = {
-	Events: {
-		label: 'Events',
-		subMenu: [
-			{
-				icon: AssistantPhotoOutlinedIcon,
-				label: 'Quick round',
-				link: '/create/quick-round',
-			},
-			{
-				icon: StarBorderOutlinedIcon,
-				label: 'Duel',
-				link: '/menu2',
-			},
-			{
-				icon: LeaderboardOutlinedIcon,
-				label: 'Competition',
-				link: '/menu3',
-			},
-			{
-				icon: LegendToggleOutlinedIcon,
-				label: 'Statistic',
-				link: '/statistic',
-			},
-			{
-				icon: DirectionsRunOutlinedIcon,
-				label: 'Activity',
-				link: '/activity',
-			},
-		],
-	},
 	User: {
 		label: 'User',
 		subMenu: [
@@ -80,6 +50,16 @@ export const menuItems: Record<string, MenuItem> = {
 				icon: PersonAddAlt1OutlinedIcon,
 				label: 'Friends',
 				link: '/user/friends',
+			},
+			{
+				icon: LegendToggleOutlinedIcon,
+				label: 'Statistic',
+				link: '/user/statistic',
+			},
+			{
+				icon: DirectionsRunOutlinedIcon,
+				label: 'Activity',
+				link: '/user/activity',
 			},
 		],
 	},
@@ -104,6 +84,26 @@ export const menuItems: Record<string, MenuItem> = {
 			{
 				icon: SettingsOutlinedIcon,
 				label: 'Settings',
+				link: '/menu3',
+			},
+		],
+	},
+	Events: {
+		label: 'Events',
+		subMenu: [
+			{
+				icon: AssistantPhotoOutlinedIcon,
+				label: 'Quick round',
+				link: '/create/quick-round',
+			},
+			{
+				icon: StarBorderOutlinedIcon,
+				label: 'Duel',
+				link: '/menu2',
+			},
+			{
+				icon: LeaderboardOutlinedIcon,
+				label: 'Competition',
 				link: '/menu3',
 			},
 		],
