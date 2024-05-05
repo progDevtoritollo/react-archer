@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { Avatar, Paper, Box, Typography } from '@mui/material'
 
 import theme from '@/app/config/ui/theme'
+import { ClickableCard } from '@/shared/ui/clickable-card'
 
 const styles = {
 	paper: {
@@ -77,7 +78,7 @@ export const RoundCard: FC<RoundProps> = ({
 	userPhoto,
 }) => {
 	return (
-		<Paper variant="outlined" sx={styles.paper}>
+		<ClickableCard>
 			<Box sx={styles.left}>
 				<Avatar sx={styles.avatar} src={userPhoto} />
 				<Box sx={styles.center}>
@@ -95,6 +96,6 @@ export const RoundCard: FC<RoundProps> = ({
 					{createdDate}
 				</Typography>
 			</Box>
-		</Paper>
+		</ClickableCard>
 	)
 }
