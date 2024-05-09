@@ -69,22 +69,27 @@ export const menuItems: Record<string, MenuItem> = {
 			{
 				icon: LegendToggleOutlinedIcon,
 				label: 'Statistic',
-				link: '/menu1',
+				link: '/club/menu1',
 			},
 			{
 				icon: DirectionsRunOutlinedIcon,
 				label: 'Activity',
-				link: '/menu2',
+				link: '/club/menu2',
+			},
+			{
+				icon: EventOutlinedIcon,
+				label: 'Find/Create Club',
+				link: '/club/find-create',
 			},
 			{
 				icon: EventOutlinedIcon,
 				label: 'Events',
-				link: '/menu3',
+				link: '/club/menu3',
 			},
 			{
 				icon: SettingsOutlinedIcon,
 				label: 'Settings',
-				link: '/menu3',
+				link: '/club/menu3',
 			},
 		],
 	},

@@ -6,6 +6,7 @@ import PageLayout from '@/app/layout/PageLayout'
 import RoundPage from '@/pages/create-round/ui'
 import UserSettings from '@/pages/user-settings/ui'
 import UserActivity from '@/pages/user-activity/ui'
+import FindCreateClub from '@/pages/find-create-club/ui'
 const TestPage = lazy(() => import('@/pages/TestPage'))
 const NotFound = lazy(() => import('@/pages/404/ui/NotFound'))
 const Logout = lazy(() => import('@/pages/auth/logout/Logout'))
@@ -25,7 +26,12 @@ const AppRouter: FC = () => {
 				<Route path="statistic" element={<h5>Statistic</h5>} />
 				<Route path="activity" element={<UserActivity />} />
 			</Route>
-
+			<Route path="/club/" element={<PageLayout />}>
+				<Route path="my" element={<h5>My Club</h5>} />
+				<Route path="activity" element={<h5>Activity</h5>} />
+				<Route path="find-create" element={<FindCreateClub />} />
+				<Route path="events" element={<h5>Events</h5>} />
+			</Route>
 			<Route path="/create/" element={<PageLayout />}>
 				<Route path="quick-round" element={<RoundPage />} />
 				<Route path="duel" element={<div>Create Duel</div>} />
