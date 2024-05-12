@@ -3,10 +3,9 @@ import { ClubDto } from '../dto/club.dto'
 
 export const mapClub = (dto: ClubDto): Club => ({
 	id: +dto.id.toString(),
-	pictureUrl: dto.pictureUrl.toString(),
+	image: dto.image.toString(),
 	name: dto.name.toString(),
-	trainerName: dto.trainerName.toString(),
-	trainerSur: dto.trainerSur.toString(),
+	trainer: dto.trainer.toString(),
 	country: dto.country.toString(),
-	memberAmount: dto.memberAmount.toString(),
+	city: dto.city.toString(),
 })

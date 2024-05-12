@@ -1,17 +1,17 @@
 import { Box, Pagination, InputBase, Button } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search'
 import { FC, useState, ChangeEvent } from 'react'
-import { Link } from 'react-router-dom'
-import { useQuery, useMutation } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
+// import SearchIcon from '@mui/icons-material/Search'
 
 import { ClubCard } from '@/entities/club'
 import PageLoader from '@/widgets/PageLoader'
+
 import { usePageParam } from '@/shared/lib/use-page-params'
 import { CountrySelect } from '@/shared/ui/country-picker'
 import { clubApi } from '@/entities/club'
 
 const DEFAULT_PAGE = 1
-const DEFAULT_ITEMS_ON_SCREEN = 14
+const DEFAULT_ITEMS_ON_SCREEN = 8
 
 const FindClub: FC = () => {
 	const itemsOnScreen = DEFAULT_ITEMS_ON_SCREEN
@@ -20,8 +20,6 @@ const FindClub: FC = () => {
 	const [inputParam, setInputParam] = useState('')
 	const [country, setCountry] = useState('')
 
-	let isSearchParamEmpty = country === '' && inputParam === ''
-
 	const {
 		data: countries,
 		isLoading: isLoadingCountries,
@@ -29,9 +27,9 @@ const FindClub: FC = () => {
 	} = useQuery(clubApi.clubQueries.countriesList())
 
 	const {
-		data: clubs,
+		data: ListClubs,
 		isLoading: isLoadingClubs,
-		isError: isErrorClubs,
+		// isError: isErrorClubs,
 		refetch,
 	} = useQuery(clubApi.clubQueries.list(page, inputParam, country, itemsOnScreen))
 
@@ -72,28 +70,35 @@ const FindClub: FC = () => {
 						<Button onClick={handleClickSearch}>Search</Button>
 					</Box>
 					<Box>
-						{isSearchParamEmpty ? (
-							<Box> Change search params to find some clubs </Box>
-						) : (
-							<Box>
+						<Box>
+							{!isLoadingClubs && ListClubs !== undefined ? (
 								<Box>
-									{/* {clubs.map(({ id, score }) => (
-						<Link to={id}>
-							<ClubCard id={id} name={club.name} score={score} userPhoto={user.pictureUrl} />
-						</Link>
-					))} */}
+									<Box sx={{ mx: 8 }}>
+										{ListClubs.clubs.map(({ id, name, image, trainer, country, city }) => (
+											<ClubCard
+												id={id}
+												name={name}
+												image={image}
+												trainer={trainer}
+												country={country}
+												city={city}
+											/>
+										))}
+									</Box>
+									<Box sx={{ display: 'flex', justifyContent: 'center' }}>
+										<Pagination
+											onChange={(_, page) => setPage(page)}
+											page={page}
+											count={ListClubs?.totalPages}
+											variant="outlined"
+											color="primary"
+										/>
+									</Box>
 								</Box>
-								<Box sx={{ display: 'flex', justifyContent: 'center' }}>
-									<Pagination
-										onChange={(_, page) => setPage(page)}
-										page={page}
-										count={clubs?.totalPages}
-										variant="outlined"
-										color="primary"
-									/>
-								</Box>
-							</Box>
-						)}
+							) : (
+								<PageLoader />
+							)}
+						</Box>
 					</Box>
 				</Box>
 			)}

@@ -1,9 +1,8 @@
 export type Club = {
 	id: number
-	pictureUrl: string
 	name: string
-	trainerName: string
-	trainerSur: string
+	trainer: string
+	city: string
+	image: string
 	country: string
-	memberAmount: string
 }

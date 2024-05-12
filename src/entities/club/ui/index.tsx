@@ -1,7 +1,9 @@
 import { FC } from 'react'
 import { Avatar, Box, Typography } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 import { ClickableCard } from '@/shared/ui/clickable-card'
+import { Club } from '@/entities/club/types/club'
 
 const styles = {
 	left: { display: 'flex', flexDirection: 'row' },
@@ -45,42 +47,36 @@ const styles = {
 	},
 }
 
-interface RoundProps {
-	id: number
-	userName: string
-	userSurname: string
-	createdDate: string
-	score: number
-	userPhoto?: string
-}
-
-export const ClubCard: FC<RoundProps> = ({
-	id,
-	userName,
-	userSurname,
-	createdDate,
-	score,
-	userPhoto,
-}) => {
+export const ClubCard: FC<Club> = ({ id, name, trainer, city, country, image }) => {
 	return (
-		<ClickableCard>
-			<Box sx={styles.left}>
-				<Avatar sx={styles.avatar} src={userPhoto} />
-				<Box sx={styles.center}>
-					<Typography variant="h3" sx={styles.name}>
-						{userName + ' ' + userSurname}
-					</Typography>
-					<Typography variant="body1" sx={styles.description}>
-						round
+		<Link replace to={`/club/${id}`}>
+			<ClickableCard>
+				<Box sx={styles.left}>
+					<Avatar sx={styles.avatar} src={image} />
+					<Box sx={styles.center}>
+						<Typography variant="body1" sx={styles.description}>
+							{name}
+						</Typography>
+						<Typography variant="h3" sx={styles.name}>
+							{trainer}
+						</Typography>
+					</Box>
+				</Box>
+				<Box sx={styles.right}>
+					<Typography variant="body1">{city}</Typography>
+					<Typography variant="body1" sx={styles.time}>
+						<Box sx={{ m: 1 }}>
+							<img
+								loading="lazy"
+								width="20"
+								srcSet={`https://flagcdn.com/w40/${country.toLowerCase()}.png 2x`}
+								src={`https://flagcdn.com/w20/${country.toLowerCase()}.png`}
+								alt=""
+							/>
+						</Box>
 					</Typography>
 				</Box>
-			</Box>
-			<Box sx={styles.right}>
-				<Typography variant="body1">{score}/300</Typography>
-				<Typography variant="body1" sx={styles.time}>
-					{createdDate}
-				</Typography>
-			</Box>
-		</ClickableCard>
+			</ClickableCard>
+		</Link>
 	)
 }
