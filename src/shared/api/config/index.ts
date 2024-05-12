@@ -8,4 +8,6 @@
 const URL: string = 'http://localhost'
 const API_URL: string = 'http://localhost:8080'
 
+// const API_URL: string = 'https://0a50-89-28-202-143.ngrok-free.app'
+
 export { API_URL, URL }

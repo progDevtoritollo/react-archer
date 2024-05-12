@@ -1,6 +1,8 @@
 export type ClubQuery = {
 	page: number
-	searchParam: string
+	size: number
+	clubName: string
+	country: string
 }
 
 export type ClubDetailQuery = {

@@ -3,23 +3,36 @@ import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import Autocomplete from '@mui/material/Autocomplete'
 
+import { Countries } from '@/entities/club/types/country'
 interface CountrySelectProps {
 	value: string
 	setCountry: (value: string) => void
+	ListCountriesFromServer?: Countries
 }
 
-export const CountrySelect: FC<CountrySelectProps> = ({ value, setCountry }) => {
+export const CountrySelect: FC<CountrySelectProps> = ({
+	ListCountriesFromServer,
+	value,
+	setCountry,
+}) => {
 	const handleChangeCountryPicker = (option: undefined | string) => {
 		if (option) {
 			setCountry(option)
 		}
+	}
+	const isServerCountries = ListCountriesFromServer
+
+	let filteredCountries: CountryType[] = []
+
+	if (ListCountriesFromServer) {
+		filteredCountries = countries.filter(country => ListCountriesFromServer.includes(country.code))
 	}
 
 	return (
 		<Autocomplete
 			id="country-select-demo"
 			sx={{ width: 300 }}
-			options={countries}
+			options={isServerCountries ? filteredCountries : countries}
 			autoHighlight
 			getOptionLabel={option => option.label}
 			onChange={(event, value) => handleChangeCountryPicker(value?.code)}

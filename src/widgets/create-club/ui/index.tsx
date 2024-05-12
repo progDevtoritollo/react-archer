@@ -94,6 +94,7 @@ const CreateClub: FC = () => {
 		onSubmit: () => {
 			const { image, ...club } = formik.values
 			mutateClubDataAsync(club).then(() => {
+				//! add to user store that user already have a club
 				if (image) {
 					handleUploadAvatar()
 				}
@@ -103,7 +104,6 @@ const CreateClub: FC = () => {
 	//! add "if" user in club he can`t create a new club, he need to leave existing club
 
 	//! after form submited user should see toaster with confirmation that response status 200 and he can manage created club
-
 	return (
 		<Box>
 			<h3>*The creator automatically become a club coach*</h3>

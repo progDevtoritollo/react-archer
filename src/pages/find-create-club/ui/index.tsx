@@ -1,8 +1,11 @@
+import { lazy } from 'react'
 import { Box } from '@mui/material'
 import { useState } from 'react'
 import { Tab } from '@mui/material'
 import { TabContext, TabList } from '@mui/lab'
-import CreateClub from '@/widgets/create-club/ui'
+
+const FindClub = lazy(() => import('@/widgets/find-club/ui'))
+const CreateClub = lazy(() => import('@/widgets/create-club/ui'))
 
 const FindCreateClub = () => {
 	const [section, setSection] = useState('find')
@@ -26,7 +29,9 @@ const FindCreateClub = () => {
 				</TabContext>
 			</Box>
 			{isFind ? (
-				<Box>// Find</Box>
+				<Box>
+					<FindClub />
+				</Box>
 			) : (
 				<Box>
 					<CreateClub />
