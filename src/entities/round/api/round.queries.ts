@@ -15,12 +15,12 @@ export const roundQueries = {
 			queryFn: () => getUserRounds(page, size, sortBy),
 			placeholderData: keepPreviousData,
 		}),
-	// clubList: (page: number, size: number, sortBy: string) =>
-	// 	queryOptions({
-	// 		queryKey: [...roundQueries.lists(), page],
-	// 		queryFn: () => getClubRounds(page, size, sortBy),
-	// 		placeholderData: keepPreviousData,
-	// 	}),
+	clubList: (page: number, size: number, sortBy: string) =>
+		queryOptions({
+			queryKey: [...roundQueries.lists(), page],
+			queryFn: () => getClubRounds(page, size, sortBy),
+			placeholderData: keepPreviousData,
+		}),
 
 	// details: () => [...eventQueries.all(), 'detail'],
 	// detail: (query?: EventDetailQuery) =>

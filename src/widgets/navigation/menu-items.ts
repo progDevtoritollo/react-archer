@@ -74,7 +74,7 @@ export const menuItems: Record<string, MenuItem> = {
 			{
 				icon: DirectionsRunOutlinedIcon,
 				label: 'Activity',
-				link: '/club/menu2',
+				link: '/club/activity',
 			},
 			{
 				icon: EventOutlinedIcon,

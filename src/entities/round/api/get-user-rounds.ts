@@ -2,7 +2,7 @@ import { apiClient } from '@/shared/api/base'
 import { UserRoundWithPaginationDto } from './dto/round-with-pagination.dto'
 import { UserRoundWithPagination } from '../types/round-with-pagination'
 import { RoundQuery } from './query/round.query'
-import { mapRound } from './mapper/map-rounds'
+import { mapUserRound } from './mapper/map-rounds'
 
 export const getUserRounds = async (
 	page: number,
@@ -12,7 +12,7 @@ export const getUserRounds = async (
 	const query: RoundQuery = { page, size, sortBy }
 	const result = await apiClient.get<UserRoundWithPaginationDto>('/api/user/rounds', query)
 	return {
-		rounds: result.rounds.map(post => mapRound(post)),
+		rounds: result.rounds.map(post => mapUserRound(post)),
 		user: {
 			id: result.user.id,
 			name: result.user.name,

@@ -1,7 +1,7 @@
-import { RoundDto, UserRoundDto, UserDto } from './round.dto'
+import { ClubMemberRoundDto, UserRoundDto, UserDto } from './round.dto'
 
 export type ClubRoundWithPaginationDto = {
-	items: { user: UserDto; round: RoundDto }
+	rounds: ClubMemberRoundDto[]
 	totalPages: number
 }
 

@@ -15,6 +15,8 @@ export const CountrySelect: FC<CountrySelectProps> = ({
 	value,
 	setCountry,
 }) => {
+	console.log(value, 'src/shared/ui/country-picker/index.tsx:15:2')
+
 	const handleChangeCountryPicker = (option: undefined | string) => {
 		if (option) {
 			setCountry(option)
@@ -35,7 +37,10 @@ export const CountrySelect: FC<CountrySelectProps> = ({
 			options={isServerCountries ? filteredCountries : countries}
 			autoHighlight
 			getOptionLabel={option => option.label}
-			onChange={(event, value) => handleChangeCountryPicker(value?.code)}
+			onChange={(event, value) => {
+				console.log(event, 'src/shared/ui/country-picker/index.tsx:38:15')
+				handleChangeCountryPicker(value?.code)
+			}}
 			renderOption={(props, option) => (
 				<Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
 					<img

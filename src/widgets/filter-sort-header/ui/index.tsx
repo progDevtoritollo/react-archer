@@ -24,6 +24,7 @@ const FilterSortActivityHeader: FC<FilterSortActivityHeaderProps> = ({
 	setSortBy,
 }) => {
 	const handleChangeActivityTypeParam = (event: React.SyntheticEvent, newValue: string) => {
+		console.log(event, 'src/widgets/filter-sort-header/ui/index.tsx:26:41')
 		setActivityType(newValue)
 	}
 	const handleChangeSortBy = (event: SelectChangeEvent) => {

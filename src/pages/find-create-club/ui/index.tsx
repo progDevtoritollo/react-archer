@@ -13,6 +13,7 @@ const FindCreateClub = () => {
 	let isFind = section === 'find'
 
 	const handleChangeSection = (event: React.SyntheticEvent, newValue: string) => {
+		console.log(event, 'src/pages/find-create-club/ui/index.tsx:15:31')
 		setSection(newValue)
 	}
 

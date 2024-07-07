@@ -1,8 +1,9 @@
 import { FC } from 'react'
-import { Avatar, Paper, Box, Typography } from '@mui/material'
+import { Avatar, Box, Typography } from '@mui/material'
 
 import theme from '@/app/config/ui/theme'
 import { ClickableCard } from '@/shared/ui/clickable-card'
+import { Link } from 'react-router-dom'
 
 const styles = {
 	paper: {
@@ -78,24 +79,26 @@ export const RoundCard: FC<RoundProps> = ({
 	userPhoto,
 }) => {
 	return (
-		<ClickableCard>
-			<Box sx={styles.left}>
-				<Avatar sx={styles.avatar} src={userPhoto} />
-				<Box sx={styles.center}>
-					<Typography variant="h3" sx={styles.name}>
-						{userName + ' ' + userSurname}
-					</Typography>
-					<Typography variant="body1" sx={styles.description}>
-						round
+		<Link replace to={`round/${id}`}>
+			<ClickableCard>
+				<Box sx={styles.left}>
+					<Avatar sx={styles.avatar} src={userPhoto} />
+					<Box sx={styles.center}>
+						<Typography variant="h3" sx={styles.name}>
+							{userName + ' ' + userSurname}
+						</Typography>
+						<Typography variant="body1" sx={styles.description}>
+							round
+						</Typography>
+					</Box>
+				</Box>
+				<Box sx={styles.right}>
+					<Typography variant="body1">{score}/300</Typography>
+					<Typography variant="body1" sx={styles.time}>
+						{createdDate}
 					</Typography>
 				</Box>
-			</Box>
-			<Box sx={styles.right}>
-				<Typography variant="body1">{score}/300</Typography>
-				<Typography variant="body1" sx={styles.time}>
-					{createdDate}
-				</Typography>
-			</Box>
-		</ClickableCard>
+			</ClickableCard>
+		</Link>
 	)
 }

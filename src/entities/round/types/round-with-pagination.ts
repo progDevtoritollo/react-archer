@@ -1,12 +1,12 @@
-import { User, UserRound } from './round'
+import { User, Round, ClubMemberRound } from './round'
 
-// export type RoundWithPagination = {
-// 	items: Round[]
-// 	totalPages: number
-// }
+export type ClubRoundWithPagination = {
+	rounds: ClubMemberRound[]
+	totalPages: number
+}
 
 export type UserRoundWithPagination = {
-	rounds: UserRound[]
+	rounds: Round[]
 	user: User
 	totalPages: number
 }
