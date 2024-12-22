@@ -78,7 +78,7 @@ export const menuItems: Record<string, MenuItem> = {
 			},
 			{
 				icon: EventOutlinedIcon,
-				label: 'Find/Create Club',
+				label: 'Find/Create',
 				link: '/club/find-create',
 			},
 			{

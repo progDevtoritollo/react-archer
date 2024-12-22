@@ -90,6 +90,15 @@ const theme = createTheme({
 		// 	white: '#fff',
 		// },
 	},
+	breakpoints: {
+		values: {
+			xs: 200,
+			sm: 600,
+			md: 700,
+			lg: 1300,
+			xl: 1800,
+		},
+	},
 	typography: {
 		logo: {
 			fontFamily: '"Brygada 1918", serif',

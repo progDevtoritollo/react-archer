@@ -12,7 +12,7 @@ const PageLayout: FC = () => {
 	//? to center PageLayout and give it max-width for adaptive
 
 	const isMobile = useMediaQuery('(max-width:600px)')
-	const isTablet = useMediaQuery('(min-width:800px)')
+	const isTablet = useMediaQuery('(min-width:1800px)')
 	//? change to brakePoints from material
 
 	if (isMobile) {
@@ -34,13 +34,13 @@ const PageLayout: FC = () => {
 			<Fragment>
 				<Paper sx={{ height: '100%', backgroundColor: theme.palette.background.default }}>
 					<Grid container spacing={2}>
-						<Grid item xs={12} sm={2} md={2.5} lg={2} xl={1.5}>
+						<Grid item xs={12} sm={2.2} md={2.6} lg={2.4} xl={2}>
 							<Paper style={{ height: '100vh' }}>
 								<SideBar />
 							</Paper>
 						</Grid>
 						<Grid item xs={12} sm={8} md={7} lg={7} xl={7.5}>
-							<Box style={{ height: '100vh' }}>
+							<Box>
 								<Outlet />
 							</Box>
 						</Grid>
